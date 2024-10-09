@@ -1,4 +1,6 @@
+data/01-raw_data/meps_00002.csv
 **/.DS_Store
+renv
 .Rproj.user
 .Rhistory
 .Rdata
