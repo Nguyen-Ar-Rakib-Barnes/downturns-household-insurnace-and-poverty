@@ -1,0 +1,234 @@
+Samples selected:
+      2004 MEPS
+      2005 MEPS
+      2006 MEPS
+      2007 MEPS
+      2008 MEPS
+      2009 MEPS
+      2010 MEPS
+      2011 MEPS
+      2012 MEPS
+      2013 MEPS
+      2014 MEPS
+      2015 MEPS
+      2016 MEPS
+      2017 MEPS
+      2018 MEPS
+      2019 MEPS
+      2020 MEPS
+      2021 MEPS
+File Type:                    rectangular
+Case Selection:               No
+  Variable                         Columns        Len   2004    2005    2006    2007    2008    2009    2010    2011    2012    2013    2014    2015    2016    2017    2018    2019    2020    2021    
+  YEAR                         P   1-4            4     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  PERNUM                       P   5-6            2     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  DUID                         P   7-13           7     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  PID                          P  14-16           3     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  MEPSID                       P  17-26          10     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  PANEL                        P  27-28           2     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  PSUANN                       P  29-31           3     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  STRATANN                     P  32-39           8     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  PSUPLD                       P  40              1     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  STRATAPLD                    P  41-44           4     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  PANELYR                      P  45-48           4     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  RELYR                        P  49              1     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  PERWEIGHT                    P  50-61          12     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  SAQWEIGHT                    P  62-73          12     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  DIABWEIGHT                   P  74-85          12     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  SDOHWT                       P  86-98          13     .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       X       
+  AGE                          P  99-101          3     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  SEX                          P 102              1     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  MARSTAT                      P 103-104          2     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  RACEA                        P 105-107          3     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  EDUC                         P 108-110          3     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  INCTOT                       P 111-119          9     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  K6SUM                        P 120-121          2     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+
+Variable Availability Key:
+All Years X - available in this sample
+All Years . - not available in this sample
+
+RECTYPE   Record type
+P         Person
+R         Round
+X         Condition
+D         Dr. visits
+A         Hospital record
+M         Prescribed medicine
+S         X-ray record
+Z         Poison record
+E         Event
+K         Event-medication-round link
+J         Condition-event/refill link
+F         Rx medicines
+
+PANEL               Panel
+00                  
+01                  
+02                  
+03                  
+04                  
+05                  
+06                  
+07                  
+08                  
+09                  
+10                  
+11                  
+12                  
+13                  
+14                  
+15                  
+16                  
+17                  
+18                  
+19                  
+20                  
+21                  
+22                  
+23                  
+24                  
+25                  
+26                  
+
+PANELYR             Year entered MEPS
+1996                1996
+1997                1997
+1998                1998
+1999                1999
+2000                2000
+2001                2001
+2002                2002
+2003                2003
+2004                2004
+2005                2005
+2006                2006
+2007                2007
+2008                2008
+2009                2009
+2010                2010
+2011                2011
+2012                2012
+2013                2013
+2014                2014
+2015                2015
+2016                2016
+2017                2017
+2018                2018
+2019                2019
+2020                2020
+2021                2021
+
+RELYR               Relative year 1 or 2 in panel
+1                   Relative year 1
+2                   Relative year 2
+3                   Relative year 3
+4                   Relative year 4
+
+SEX                 Sex
+1                   Male
+2                   Female
+7                   Unknown-refused
+8                   Unknown-not ascertained
+9                   Unknown-don't know
+
+MARSTAT             Legal marital status
+00                  NIU
+10                  Married
+20                  Widowed
+30                  Divorced
+40                  Separated
+50                  Never married
+99                  Unknown marital status
+
+RACEA               Main Racial Background (Pre-1997 Revised OMB Standards), self-reported or interviewer reported
+100                 White
+200                 Black/African-American
+300                 Aleut, Alaskan Native, or American Indian
+310                 Alaskan Native or American Indian
+320                 Alaskan Native/Eskimo
+330                 Aleut
+340                 American Indian
+350                 American Indian or Alaskan Native and any other group
+400                 Asian or Pacific Islander
+410                 Asian
+411                 Chinese
+412                 Filipino
+413                 Korean
+414                 Vietnamese
+415                 Japanese
+416                 Asian Indian
+420                 Pacific Islander
+421                 Hawaiian
+422                 Samoan
+423                 Guamanian
+430                 Other Asian or Pacific Islander
+431                 Other Asian or Pacific Islander (1992-1995)
+432                 Other Asian or Pacific Islander (1996)
+433                 Other Asian or Pacific Islander (1997-1998)
+434                 Other Asian (1999 forward)
+500                 Other Race
+510                 Other Race (1963-1977)
+520                 Other Race (1978)
+530                 Other Race (1979-1991)
+540                 Other Race (1992-1995)
+550                 Other Race (1996)
+560                 Other Race (1997-1998)
+570                 Other Race (1999-2002)
+580                 Primary Race not releasable
+600                 Multiple Race, No Primary Race Selected
+610                 Multiple Race, including Asian, excluding Black and White
+611                 Multiple Race, including Asian and Black, excluding White
+612                 Multiple Race, including Asian and White, excluding Black
+613                 Multiple Race, including Black, excluding Asian and White
+614                 Multiple Race, including Black and White, excluding Asian
+615                 Multiple Race, including White, excluding Asian and Black
+616                 Multiple Race, including Asian, White, and Black
+617                 Multiple Race, excluding Asian, White, and Black
+900                 Unknown
+970                 Unknown-refused
+980                 Unknown-not ascertained
+990                 Unknown (1997 forward: Don't know)
+
+EDUC                Educational attainment
+000                 NIU
+100                 Grade 12 or less, no high school diploma or equivalent
+101                 Grade 8 or less (no further detail)
+102                 Never attended/kindergarten only
+103                 Grades 1-11 (no further detail)
+104                 Grade 1
+105                 Grade 2
+106                 Grade 3
+107                 Grade 4
+108                 Grade 5
+109                 Grade 6
+110                 Grade 7
+111                 Grade 8
+112                 Grade 9-12, no diploma (no further detail)
+113                 Grade 9
+114                 Grade 10
+115                 Grade 11
+116                 12th grade, no diploma
+200                 High school diploma or GED
+201                 High school graduate
+202                 GED or equivalent
+300                 Some college, no 4yr degree
+301                 Some college, no degree
+302                 AA degree: technical/vocational/occupational
+303                 AA degree: academic program
+400                 Bachelor's degree (BA,AB,BS,BBA)
+500                 Master's, Professional, or Doctoral Degree
+501                 Master's degree (MA,MS,Med,MBA)
+502                 Professional (MD,DDS,DVM,JD)
+503                 Doctoral degree (PhD, EdD)
+504                 Other degree
+505                 Professional School or Doctoral degree, topcoded (MD, DDS, DVM, JD, PhD, EdD)
+996                 No degree, years of education unknown
+997                 Unknown--refused
+998                 Unknown--not ascertained
+999                 Unknown--don't know
+
+K6SUM               K6 score for nonspecific psychological distress: last 30 days
+96                  NIU
+98                  Unknown-not ascertained
+
