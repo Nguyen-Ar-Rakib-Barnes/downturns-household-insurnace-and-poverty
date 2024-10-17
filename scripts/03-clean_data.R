@@ -16,7 +16,7 @@ cleaned_data <-
   raw_data |>
   janitor::clean_names()
 
-cleaned_data <- cleaned_data |> select(year,pid,age,sex,marstat,educ,inctot,k6sum)
+cleaned_data <- cleaned_data |> select(year,pid,age,sex,marstat,racea,educ,inctot,k6sum)
 
 cleaned_data <- cleaned_data |> filter(!k6sum %in% c(96,98)) |> filter(inctot>0)
 cleaned_data$outcome <- ifelse(cleaned_data$k6sum<13,0,1)

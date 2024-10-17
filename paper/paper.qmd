@@ -30,40 +30,9 @@ library(modelsummary)
 library(rstanarm)
 library(tidybayes)
 library(tidyverse)
-df <- read.csv(here::here("data/02-analysis_data/analysis_data.csv"))
-
+# df <- read.csv(here::here("data/02-analysis_data/analysis_data.csv"))
+labeled_df <- read.csv(here::here("data/02-analysis_data/model_data_sample_2k.csv"))
 ```
-
-```{r}
-#| warning: false
-#| message: false
-labeled_df |>
-  ggplot(aes(x = label_education, fill = label_outcome)) +
-  stat_count(position = "dodge") +
-  facet_wrap(facets = vars(label_sex)) +
-  theme_minimal() +
-  labs(
-    x = "Highest education",
-    y = "Number of respondents",
-    fill = "Mental Depression"
-  ) +
-  coord_flip() +
-  scale_fill_brewer(palette = "Set2") +
-  theme(legend.position = "bottom")
-```
-```{r}
-#| warning: false
-#| message: false
-mental_illness <- readRDS(file = here::here("models/mental_illness.rds"))
-
-modelsummary(
-  list(
-    "Mental Illness Exist" = mental_illness
-  ),
-  statistic = "mad"
-  )
-```
-
 # Introduction
 
 Overview paragraph
@@ -78,6 +47,26 @@ Telegraphing paragraph: The remainder of this paper is structured as follows. @s
 
 # Data {#sec-data}
 
+```{r}
+#| label: fig-education
+#| fig-cap: Education
+#| warning: false
+#| message: false
+#| echo: false
+labeled_df |>
+  ggplot(aes(x = label_education, fill = label_outcome)) +
+  stat_count(position = "dodge") +
+  facet_wrap(facets = vars(label_sex)) +
+  theme_minimal() +
+  labs(
+    x = "Highest education",
+    y = "Number of respondents",
+    fill = "Mental Depression"
+  ) +
+  coord_flip() +
+  scale_fill_brewer(palette = "Set2") +
+  theme(legend.position = "bottom")
+```
 ## Overview
 
 We use the statistical programming language R [@citeR].... Our data [@shelter].... Following @tellingstories, we consider...
@@ -99,13 +88,13 @@ Some of our data is of penguins (@fig-bills), from @palmerpenguins.
 #| fig-cap: Bills of penguins
 #| echo: false
 
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+# ggplot(penguins, aes(x = island, fill = species)) +
+#   geom_bar(alpha = 0.8) +
+#   scale_fill_manual(values = c("darkorange","purple","cyan4"),
+#                     guide = "none") +
+#   theme_minimal() +
+#   facet_wrap(~species, ncol = 1) +
+#   coord_flip()
 ```
 
 Talk more about it.
@@ -119,14 +108,14 @@ And also planes (@fig-planes). (You can change the height and width, but don't w
 #| warning: false
 #| message: false
 
-analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
-
-analysis_data |> 
-  ggplot(aes(x = width, y = length)) +
-  geom_point(alpha = 0.8) +
-  theme_minimal() +
-  labs(x = "Wing width (mm)",
-       y = "Wing length (mm)")
+# analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
+# 
+# analysis_data |> 
+#   ggplot(aes(x = width, y = length)) +
+#   geom_point(alpha = 0.8) +
+#   theme_minimal() +
+#   labs(x = "Wing width (mm)",
+#        y = "Wing length (mm)")
 ```
 
 Talk way more about it.
@@ -142,6 +131,7 @@ Use sub-sub-headings for each outcome variable and feel free to combine a few in
 The goal of our modelling strategy is twofold. Firstly,...
 
 Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
+
 
 ## Model set-up
 
@@ -166,18 +156,23 @@ We can use maths by including latex between dollar signs, for instance $\theta$.
 
 # Results
 
-Our results are summarized in @tbl-modelresults.
+Our results are summarized in @tbl-lrmodelresults.
 
 ```{r}
-#| echo: false
-#| eval: true
 #| warning: false
 #| message: false
+#| echo: false
+#| eval: true
+#| label: tbl-lrmodelresults
+#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
+mental_illness <- readRDS(file = here::here("models/mental_illness.rds"))
 
-library(rstanarm)
-
-first_model <-
-  readRDS(file = here::here("models/first_model.rds"))
+modelsummary(
+  list(
+    "Mental Illness Exist" = mental_illness
+  ),
+  statistic = "mad"
+  )
 ```
 
 ```{r}
@@ -187,13 +182,13 @@ first_model <-
 #| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
 #| warning: false
 
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
+# modelsummary::modelsummary(
+#   list(
+#     "First model" = first_model
+#   ),
+#   statistic = "mad",
+#   fmt = 2
+# )
 ```
 
 # Discussion
@@ -238,15 +233,15 @@ In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. Th
 #| fig-cap: "Examining how the model fits, and is affected by, the data"
 #| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
 
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
-
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
+# pp_check(first_model) +
+#   theme_classic() +
+#   theme(legend.position = "bottom")
+# 
+# posterior_vs_prior(first_model) +
+#   theme_minimal() +
+#   scale_color_brewer(palette = "Set1") +
+#   theme(legend.position = "bottom") +
+#   coord_flip()
 ```
 
 ## Diagnostics
@@ -264,10 +259,10 @@ posterior_vs_prior(first_model) +
 #| fig-cap: "Checking the convergence of the MCMC algorithm"
 #| fig-subcap: ["Trace plot", "Rhat plot"]
 #| layout-ncol: 2
-
-plot(first_model, "trace")
-
-plot(first_model, "rhat")
+# 
+# plot(first_model, "trace")
+# 
+# plot(first_model, "rhat")
 ```
 
 \newpage
