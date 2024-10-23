@@ -1,4 +1,4 @@
-# Sex, Education, and Mental Depression: Analyzing Census Data Through Statistical Methods (U.S.A., 2018 and 2021) : [insert subtitle here]
+# Sex, Education, and Mental Depression: Analyzing Census Data Through Statistical Methods (U.S.A., 2018 and 2021) 
 
 ## Overview
 
