@@ -516,83 +516,78 @@ labeled_df_reduced_2021 |>
 
 # Model {#sec-model-desc}
 
-The goal of our modelling strategy is twofold. Firstly,...
+We leverage the logistic regression model to identify the association between suffering from psychological distress with sex and education. We set our model following the @tellingstories guidelines with the rstanarm package [@rstanarm_goodrich, @rstanarm_brilleman] in R [@citer].
 
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
+Logistic regression is a commonly used regression model when the outcome variable is binary [@tellingstories]. For our dataset, we introduce an outcome variable, which represents whether an individual is suffering from psychological distress. As a predictor variable for the logistic regression, we will use the sex and education variables discussed in the @sec-data.
 
 ## Model set-up
 
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.
+For logistic regression, we are using the equation below:
 
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
+\begin{align}
+y_i \sim Bern(\pi_i) \\
+logit(y_i) \sim \beta_0 + \beta_1 \times sex_i + \beta_2 \times education_i \\
+\beta_0 \sim Normal(0,2.5) \\
+\beta_1 \sim Normal(0,2.5) \\
+\beta_2 \sim Normal(0,2.5)
 \end{align}
 
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
-### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
+Here, $y_i$ represents whether a respondent suffers from psychological distress. $sex_i$ represents the respondent's gender, and $education_i$ represents the maximum education attained by the respondent. We randomly select 5000 samples from our entire dataset to simplify the model for lower execution time.
 
 # Results {#sec-result}
 
-Our results are summarized in @tbl-lrmodelresults.
+Our results are summarized in @tbl-lrmodelresults-2018 and @tbl-lrmodelresults-2021.
 
 ```{r}
 #| warning: false
 #| message: false
 #| echo: false
 #| eval: true
-#| label: tbl-lrmodelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-# mental_illness <- readRDS(file = here::here("models/mental_illness.rds"))
-# 
-# modelsummary(
-#   list(
-#     "Mental Illness Exist" = mental_illness
-#   ),
-#   statistic = "mad"
-#   )
+#| label: tbl-lrmodelresults-2018
+#| tbl-cap: "Model Results for Year 2018"
+
+mental_illness_2018 <- readRDS(file = here::here("models/mental_illness_2018.rds"))
+
+modelsummary(
+  list(
+    "Severe Mental Illness" = mental_illness_2018
+  ),
+  statistic = "mad"
+)
 ```
 
 ```{r}
+#| warning: false
+#| message: false
 #| echo: false
 #| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-#| warning: false
+#| label: tbl-lrmodelresults-2021
+#| tbl-cap: "Model Results for Year 2021"
 
-# modelsummary::modelsummary(
-#   list(
-#     "First model" = first_model
-#   ),
-#   statistic = "mad",
-#   fmt = 2
-# )
+mental_illness_2021 <- readRDS(file = here::here("models/mental_illness_2021.rds"))
+modelsummary(
+  list(
+    "Severe Mental Illness" = mental_illness_2021
+  ),
+  statistic = "mad"
+)
 ```
+
+\newpage
 
 # Discussion {#sec-discussion}
 
-## First discussion point {#sec-first-point}
+## Gender Differences in Depression {#sec-first-point}
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this.
+@tbl-lrmodelresults-2018 and @tbl-lrmodelresults-2021 demonstrate that the odds of being female and having psychological depression are higher compared to males. The findings are consistent both before and after the pandemic.
 
-## Second discussion point
+## Educational Differences 
 
-Please don't use these as sub-heading labels - change them to be what your point actually is.
-
-## Third discussion point
+We have not found any notable differences between education and psychological distress. Research indicates a strong connection between emotional well-being and education, as emotional learning is believed to be nurtured within the school environment and through the curriculum [@norwich_critical_2022;@billington_conditions_2022].
 
 ## Weaknesses and next steps
 
-Weaknesses and next steps should also be included.
+We randomly selected 5000 samples for our model. We have not used any prediction to find out how good our model is for detecting psychological depression. We also have not conducted any data augmentation to improve our model result. Our next steps are carefully curating the dataset, introducing several data validation techniques, and increasing the sample set.
 
 \newpage
 
@@ -745,58 +740,6 @@ illness.<br><br>Kessler's instrument asks how often, during the past 30 days, th
 501~"Master's",
 502~"Professional",
 503~"Doctoral"
-
-
-
-# Model details {#sec-model-details}
-
-## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows...
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-# pp_check(first_model) +
-#   theme_classic() +
-#   theme(legend.position = "bottom")
-# 
-# posterior_vs_prior(first_model) +
-#   theme_minimal() +
-#   scale_color_brewer(palette = "Set1") +
-#   theme(legend.position = "bottom") +
-#   coord_flip()
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
-# 
-# plot(first_model, "trace")
-# 
-# plot(first_model, "rhat")
-```
 
 \newpage
 
