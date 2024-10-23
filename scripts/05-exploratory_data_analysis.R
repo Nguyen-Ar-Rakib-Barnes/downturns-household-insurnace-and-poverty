@@ -33,14 +33,14 @@ filtered_df_2018 <- df |> filter(year==2018) |> filter(age!=996) |>
   filter(age>18) |> filter(age<80) |>
   filter(sex %in% c(1,2)) |> filter(marstat %in% c(10,20,30,40,50,99)) |>
   filter(racea %in% c(100,200,300,310,320,330,340,350,400,410,411,412,413,414,415,416,420,421,422,423,430,431,432,433,434,500,510,520,530,540,550,560,570,580,600,610,611,612,613,614,615,616,617)) |> 
-  filter(educ %in% c(100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,200,201,202,300,301,302,303,400,500,501,502,503,504,505))
+  filter(educ %in% c(100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,200,201,202,300,301,302,303,400,501,502,503)) # skipping 500 and 505 and 504
 
 ### Model data ###
 filtered_df_2021 <- df |> filter(year==2021) |> filter(age!=996) |>
   filter(age>18) |> filter(age<80) |>
   filter(sex %in% c(1,2)) |> filter(marstat %in% c(10,20,30,40,50,99)) |>
   filter(racea %in% c(100,200,300,310,320,330,340,350,400,410,411,412,413,414,415,416,420,421,422,423,430,431,432,433,434,500,510,520,530,540,550,560,570,580,600,610,611,612,613,614,615,616,617)) |> 
-   filter(educ %in% c(100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,200,201,202,300,301,302,303,400,500,501,502,503,504,505))
+   filter(educ %in% c(100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,200,201,202,300,301,302,303,400,501,502,503))  # skipping 500 and 505 and 504
 
 write_csv(filtered_df_2018, "data/02-analysis_data/model_data_2018.csv")
 write_csv(filtered_df_2021, "data/02-analysis_data/model_data_2021.csv")
@@ -120,72 +120,39 @@ labeled_df_reduced_2018 <- labeled_df_reduced_2018 |> mutate(
                 levels=c("White", "Black/African-American", "Aleut, Alaskan Native, or American Indian", "Alaskan Native or American Indian", "Alaskan Native/Eskimo", "Aleut", "American Indian", "American Indian or Alaskan Native and any other group", "Asian or Pacific Islander", "Asian", "Chinese", "Filipino", "Korean", "Vietnamese", "Japanese", "Asian Indian", "Pacific Islander", "Hawaiian", "Samoan", "Guamanian", "Other Asian or Pacific Islander", "Other Asian or Pacific Islander (1992-1995)", "Other Asian or Pacific Islander (1996)", "Other Asian or Pacific Islander (1997-1998)", "Other Asian (1999 forward)", "Other Race", "Other Race (1963-1977)", "Other Race (1978)", "Other Race (1979-1991)", "Other Race (1992-1995)", "Other Race (1996)", "Other Race (1997-1998)", "Other Race (1999-2002)", "Primary Race not releasable", "Multiple Race, No Primary Race Selected", "Multiple Race, including Asian, excluding Black and White", "Multiple Race, including Asian and Black, excluding White", "Multiple Race, including Asian and White, excluding Black", "Multiple Race, including Black, excluding Asian and White", "Multiple Race, including Black and White, excluding Asian", "Multiple Race, including White, excluding Asian and Black", "Multiple Race, including Asian, White, and Black", "Multiple Race, excluding Asian, White, and Black"
                 )),
   education = case_when(
-    educ==100~"Grade 12 or less, no high school diploma or equivalent",
-    educ==101~"Grade 8 or less (no further detail)",
+    educ==100~"Grade 12 or less",
+    educ==101~"Grade 12 or less",
     educ==102~"Never attended/kindergarten only",
-    educ==103~"Grade 12 or less, no high school diploma or equivalent",
-    educ==104~"Grade 12 or less, no high school diploma or equivalent",
-    educ==105~"Grade 12 or less, no high school diploma or equivalent",
-    educ==106~"Grade 12 or less, no high school diploma or equivalent",
-    educ==107~"Grade 12 or less, no high school diploma or equivalent",
-    educ==108~"Grade 12 or less, no high school diploma or equivalent",
-    educ==109~"Grade 12 or less, no high school diploma or equivalent",
-    educ==110~"Grade 12 or less, no high school diploma or equivalent",
-    educ==111~"Grade 12 or less, no high school diploma or equivalent",
-    educ==112~"Grade 12 or less, no high school diploma or equivalent",
-    educ==113~"Grade 12 or less, no high school diploma or equivalent",
-    educ==114~"Grade 12 or less, no high school diploma or equivalent",
-    educ==115~"Grade 12 or less, no high school diploma or equivalent",
-    educ==116~"Grade 12 or less, no high school diploma or equivalent",
-    educ==200~"High school diploma or GED",
-    educ==201~"High school graduate",
+    educ==103~"Grade 12 or less",
+    educ==104~"Grade 12 or less",
+    educ==105~"Grade 12 or less",
+    educ==106~"Grade 12 or less",
+    educ==107~"Grade 12 or less",
+    educ==108~"Grade 12 or less",
+    educ==109~"Grade 12 or less",
+    educ==110~"Grade 12 or less",
+    educ==111~"Grade 12 or less",
+    educ==112~"Grade 12 or less",
+    educ==113~"Grade 12 or less",
+    educ==114~"Grade 12 or less",
+    educ==115~"Grade 12 or less",
+    educ==116~"Grade 12 or less",
+    educ==200~"High school",
+    educ==201~"High school",
     educ==202~"GED or equivalent",
-    educ==300~"Some college, no 4yr degree",
-    educ==301~"Some college, no degree",
-    educ==302~"AA degree: technical/vocational/occupational",
-    educ==303~"AA degree: academic program",
-    educ==400~"Bachelor's degree (BA,AB,BS,BBA)",
-    educ==500~"Master's, Professional, or Doctoral Degree",
-    educ==501~"Master's degree (MA,MS,Med,MBA)",
-    educ==502~"Professional (MD,DDS,DVM,JD)",
-    educ==503~"Doctoral degree (PhD, EdD)",
-    educ==504~"Other degree",
-    educ==505~"Professional School or Doctoral degree, topcoded (MD, DDS, DVM, JD, PhD, EdD)"
+    educ==300~"Some college",
+    educ==301~"Some college",
+    educ==302~"AA degree",
+    educ==303~"AA degree",
+    educ==400~"Bachelor's",
+    educ==501~"Master's",
+    educ==502~"Professional",
+    educ==503~"Doctoral"
   ),
   education = factor(
     education,
     levels=c(
-      "Grade 12 or less, no high school diploma or equivalent",
-      "Grade 8 or less (no further detail)",
-      "Never attended/kindergarten only",
-      "Grades 1-11 (no further detail)",
-      "Grade 1",
-      "Grade 2",
-      "Grade 3",
-      "Grade 4",
-      "Grade 5",
-      "Grade 6",
-      "Grade 7",
-      "Grade 8",
-      "Grade 9-12, no diploma (no further detail)",
-      "Grade 9",
-      "Grade 10",
-      "Grade 11",
-      "12th grade, no diploma",
-      "High school diploma or GED",
-      "High school graduate",
-      "GED or equivalent",
-      "Some college, no 4yr degree",
-      "Some college, no degree",
-      "AA degree: technical/vocational/occupational",
-      "AA degree: academic program",
-      "Bachelor's degree (BA,AB,BS,BBA)",
-      "Master's, Professional, or Doctoral Degree",
-      "Master's degree (MA,MS,Med,MBA)",
-      "Professional (MD,DDS,DVM,JD)",
-      "Doctoral degree (PhD, EdD)",
-      "Other degree",
-      "Professional School or Doctoral degree, topcoded (MD, DDS, DVM, JD, PhD, EdD)"
+      "Grade 12 or less","Never attended/kindergarten only","High school","GED or equivalent","Some college","AA degree","Bachelor's","Master's","Professional","Doctoral"
     )
   )
 )
@@ -252,72 +219,39 @@ labeled_df_reduced_2021 <- labeled_df_reduced_2021 |> mutate(
                 levels=c("White", "Black/African-American", "Aleut, Alaskan Native, or American Indian", "Alaskan Native or American Indian", "Alaskan Native/Eskimo", "Aleut", "American Indian", "American Indian or Alaskan Native and any other group", "Asian or Pacific Islander", "Asian", "Chinese", "Filipino", "Korean", "Vietnamese", "Japanese", "Asian Indian", "Pacific Islander", "Hawaiian", "Samoan", "Guamanian", "Other Asian or Pacific Islander", "Other Asian or Pacific Islander (1992-1995)", "Other Asian or Pacific Islander (1996)", "Other Asian or Pacific Islander (1997-1998)", "Other Asian (1999 forward)", "Other Race", "Other Race (1963-1977)", "Other Race (1978)", "Other Race (1979-1991)", "Other Race (1992-1995)", "Other Race (1996)", "Other Race (1997-1998)", "Other Race (1999-2002)", "Primary Race not releasable", "Multiple Race, No Primary Race Selected", "Multiple Race, including Asian, excluding Black and White", "Multiple Race, including Asian and Black, excluding White", "Multiple Race, including Asian and White, excluding Black", "Multiple Race, including Black, excluding Asian and White", "Multiple Race, including Black and White, excluding Asian", "Multiple Race, including White, excluding Asian and Black", "Multiple Race, including Asian, White, and Black", "Multiple Race, excluding Asian, White, and Black"
                 )),
   education = case_when(
-    educ==100~"Grade 12 or less, no high school diploma or equivalent",
-    educ==101~"Grade 8 or less (no further detail)",
+    educ==100~"Grade 12 or less",
+    educ==101~"Grade 12 or less",
     educ==102~"Never attended/kindergarten only",
-    educ==103~"Grade 12 or less, no high school diploma or equivalent",
-    educ==104~"Grade 12 or less, no high school diploma or equivalent",
-    educ==105~"Grade 12 or less, no high school diploma or equivalent",
-    educ==106~"Grade 12 or less, no high school diploma or equivalent",
-    educ==107~"Grade 12 or less, no high school diploma or equivalent",
-    educ==108~"Grade 12 or less, no high school diploma or equivalent",
-    educ==109~"Grade 12 or less, no high school diploma or equivalent",
-    educ==110~"Grade 12 or less, no high school diploma or equivalent",
-    educ==111~"Grade 12 or less, no high school diploma or equivalent",
-    educ==112~"Grade 12 or less, no high school diploma or equivalent",
-    educ==113~"Grade 12 or less, no high school diploma or equivalent",
-    educ==114~"Grade 12 or less, no high school diploma or equivalent",
-    educ==115~"Grade 12 or less, no high school diploma or equivalent",
-    educ==116~"Grade 12 or less, no high school diploma or equivalent",
-    educ==200~"High school diploma or GED",
-    educ==201~"High school graduate",
+    educ==103~"Grade 12 or less",
+    educ==104~"Grade 12 or less",
+    educ==105~"Grade 12 or less",
+    educ==106~"Grade 12 or less",
+    educ==107~"Grade 12 or less",
+    educ==108~"Grade 12 or less",
+    educ==109~"Grade 12 or less",
+    educ==110~"Grade 12 or less",
+    educ==111~"Grade 12 or less",
+    educ==112~"Grade 12 or less",
+    educ==113~"Grade 12 or less",
+    educ==114~"Grade 12 or less",
+    educ==115~"Grade 12 or less",
+    educ==116~"Grade 12 or less",
+    educ==200~"High school",
+    educ==201~"High school",
     educ==202~"GED or equivalent",
-    educ==300~"Some college, no 4yr degree",
-    educ==301~"Some college, no degree",
-    educ==302~"AA degree: technical/vocational/occupational",
-    educ==303~"AA degree: academic program",
-    educ==400~"Bachelor's degree (BA,AB,BS,BBA)",
-    educ==500~"Master's, Professional, or Doctoral Degree",
-    educ==501~"Master's degree (MA,MS,Med,MBA)",
-    educ==502~"Professional (MD,DDS,DVM,JD)",
-    educ==503~"Doctoral degree (PhD, EdD)",
-    educ==504~"Other degree",
-    educ==505~"Professional School or Doctoral degree, topcoded (MD, DDS, DVM, JD, PhD, EdD)"
+    educ==300~"Some college",
+    educ==301~"Some college",
+    educ==302~"AA degree",
+    educ==303~"AA degree",
+    educ==400~"Bachelor's",
+    educ==501~"Master's",
+    educ==502~"Professional",
+    educ==503~"Doctoral"
   ),
   education = factor(
     education,
     levels=c(
-      "Grade 12 or less, no high school diploma or equivalent",
-      "Grade 8 or less (no further detail)",
-      "Never attended/kindergarten only",
-      "Grades 1-11 (no further detail)",
-      "Grade 1",
-      "Grade 2",
-      "Grade 3",
-      "Grade 4",
-      "Grade 5",
-      "Grade 6",
-      "Grade 7",
-      "Grade 8",
-      "Grade 9-12, no diploma (no further detail)",
-      "Grade 9",
-      "Grade 10",
-      "Grade 11",
-      "12th grade, no diploma",
-      "High school diploma or GED",
-      "High school graduate",
-      "GED or equivalent",
-      "Some college, no 4yr degree",
-      "Some college, no degree",
-      "AA degree: technical/vocational/occupational",
-      "AA degree: academic program",
-      "Bachelor's degree (BA,AB,BS,BBA)",
-      "Master's, Professional, or Doctoral Degree",
-      "Master's degree (MA,MS,Med,MBA)",
-      "Professional (MD,DDS,DVM,JD)",
-      "Doctoral degree (PhD, EdD)",
-      "Other degree",
-      "Professional School or Doctoral degree, topcoded (MD, DDS, DVM, JD, PhD, EdD)"
+      "Grade 12 or less","Never attended/kindergarten only","High school","GED or equivalent","Some college","AA degree","Bachelor's","Master's","Professional","Doctoral"
     )
   )
 )
@@ -428,7 +362,7 @@ ggplot(summary_stats_2021, aes(x = sex, y = mean_income, fill = sex)) +
 
 mental_illness_2018 <-
   stan_glm(
-    outcome ~ sex + marital_status + race + education,
+    outcome ~ sex + education,
     data = labeled_df_reduced_2018,
     family = binomial(link = "logit"),
     prior = normal(location = 0, scale = 2.5, autoscale = TRUE),
@@ -439,7 +373,7 @@ mental_illness_2018 <-
 
 mental_illness_2021 <-
   stan_glm(
-    outcome ~ sex + marital_status + race + education,
+    outcome ~ sex + education,
     data = labeled_df_reduced_2021,
     family = binomial(link = "logit"),
     prior = normal(location = 0, scale = 2.5, autoscale = TRUE),
@@ -479,10 +413,6 @@ modelsummary(
   ),
   statistic = "mad"
 )
-
-
-
-
 
 
 # Calculate log-odds (Intercept + Coefficient)

@@ -31,8 +31,207 @@ library(rstanarm)
 library(tidybayes)
 library(tidyverse)
 library(here)
+library(ggplot2)
 filtered_df_2018 <- read.csv(here::here("data/02-analysis_data/model_data_2018.csv"))
 filtered_df_2021 <- read.csv(here::here("data/02-analysis_data/model_data_2021.csv"))
+
+labeled_df_reduced_2018 <- filtered_df_2018 |> mutate(
+  outcome = if_else(outcome==1, "Yes", "No"),
+  outcome = as_factor(outcome),
+  sex = if_else(sex==1,"Male", "Female"),
+  sex = as_factor(sex),
+  marital_status = case_when(
+    marstat==10~"Married",
+    marstat==20~"Widowed",
+    marstat==30~"Divorced",
+    marstat==40~"Separated",
+    marstat==50~"Never married"
+  ),
+  marital_status = factor(marital_status, levels=c("Married","Widowed","Divorced","Separated","Never married")),
+  race= case_when(
+    racea==100~"White",
+    racea==200~"Black/African-American",
+    racea==300~"Aleut, Alaskan Native, or American Indian",
+    racea==310~"Alaskan Native or American Indian",
+    racea==320~"Alaskan Native/Eskimo",
+    racea==330~"Aleut",
+    racea==340~"American Indian",
+    racea==350~"American Indian or Alaskan Native and any other group",
+    racea==400~"Asian or Pacific Islander",
+    racea==410~"Asian",
+    racea==411~"Chinese",
+    racea==412~"Filipino",
+    racea==413~"Korean",
+    racea==414~"Vietnamese",
+    racea==415~"Japanese",
+    racea==416~"Asian Indian",
+    racea==420~"Pacific Islander",
+    racea==421~"Hawaiian",
+    racea==422~"Samoan",
+    racea==423~"Guamanian",
+    racea==430~"Other Asian or Pacific Islander",
+    racea==431~"Other Asian or Pacific Islander (1992-1995)",
+    racea==432~"Other Asian or Pacific Islander (1996)",
+    racea==433~"Other Asian or Pacific Islander (1997-1998)",
+    racea==434~"Other Asian (1999 forward)",
+    racea==500~"Other Race",
+    racea==510~"Other Race (1963-1977)",
+    racea==520~"Other Race (1978)",
+    racea==530~"Other Race (1979-1991)",
+    racea==540~"Other Race (1992-1995)",
+    racea==550~"Other Race (1996)",
+    racea==560~"Other Race (1997-1998)",
+    racea==570~"Other Race (1999-2002)",
+    racea==580~"Primary Race not releasable",
+    racea==600~"Multiple Race, No Primary Race Selected",
+    racea==610~"Multiple Race, including Asian, excluding Black and White",
+    racea==611~"Multiple Race, including Asian and Black, excluding White",
+    racea==612~"Multiple Race, including Asian and White, excluding Black",
+    racea==613~"Multiple Race, including Black, excluding Asian and White",
+    racea==614~"Multiple Race, including Black and White, excluding Asian",
+    racea==615~"Multiple Race, including White, excluding Asian and Black",
+    racea==616~"Multiple Race, including Asian, White, and Black",
+    racea==617~"Multiple Race, excluding Asian, White, and Black"
+  ),
+  race = factor(race, 
+                levels=c("White", "Black/African-American", "Aleut, Alaskan Native, or American Indian", "Alaskan Native or American Indian", "Alaskan Native/Eskimo", "Aleut", "American Indian", "American Indian or Alaskan Native and any other group", "Asian or Pacific Islander", "Asian", "Chinese", "Filipino", "Korean", "Vietnamese", "Japanese", "Asian Indian", "Pacific Islander", "Hawaiian", "Samoan", "Guamanian", "Other Asian or Pacific Islander", "Other Asian or Pacific Islander (1992-1995)", "Other Asian or Pacific Islander (1996)", "Other Asian or Pacific Islander (1997-1998)", "Other Asian (1999 forward)", "Other Race", "Other Race (1963-1977)", "Other Race (1978)", "Other Race (1979-1991)", "Other Race (1992-1995)", "Other Race (1996)", "Other Race (1997-1998)", "Other Race (1999-2002)", "Primary Race not releasable", "Multiple Race, No Primary Race Selected", "Multiple Race, including Asian, excluding Black and White", "Multiple Race, including Asian and Black, excluding White", "Multiple Race, including Asian and White, excluding Black", "Multiple Race, including Black, excluding Asian and White", "Multiple Race, including Black and White, excluding Asian", "Multiple Race, including White, excluding Asian and Black", "Multiple Race, including Asian, White, and Black", "Multiple Race, excluding Asian, White, and Black"
+                )),
+  education = case_when(
+    educ==100~"Grade 12 or less",
+    educ==101~"Grade 12 or less",
+    educ==102~"Never attended/kindergarten only",
+    educ==103~"Grade 12 or less",
+    educ==104~"Grade 12 or less",
+    educ==105~"Grade 12 or less",
+    educ==106~"Grade 12 or less",
+    educ==107~"Grade 12 or less",
+    educ==108~"Grade 12 or less",
+    educ==109~"Grade 12 or less",
+    educ==110~"Grade 12 or less",
+    educ==111~"Grade 12 or less",
+    educ==112~"Grade 12 or less",
+    educ==113~"Grade 12 or less",
+    educ==114~"Grade 12 or less",
+    educ==115~"Grade 12 or less",
+    educ==116~"Grade 12 or less",
+    educ==200~"High school",
+    educ==201~"High school",
+    educ==202~"GED or equivalent",
+    educ==300~"Some college",
+    educ==301~"Some college",
+    educ==302~"AA degree",
+    educ==303~"AA degree",
+    educ==400~"Bachelor's",
+    educ==501~"Master's",
+    educ==502~"Professional",
+    educ==503~"Doctoral"
+  ),
+  education = factor(
+    education,
+    levels=c(
+      "Grade 12 or less","Never attended/kindergarten only","High school","GED or equivalent","Some college","AA degree","Bachelor's","Master's","Professional","Doctoral"
+    )
+  )
+)
+
+labeled_df_reduced_2021 <- filtered_df_2021 |> mutate(
+  outcome = if_else(outcome==1, "Yes", "No"),
+  outcome = as_factor(outcome),
+  sex = if_else(sex==1,"Male", "Female"),
+  sex = as_factor(sex),
+  marital_status = case_when(
+    marstat==10~"Married",
+    marstat==20~"Widowed",
+    marstat==30~"Divorced",
+    marstat==40~"Separated",
+    marstat==50~"Never married"
+  ),
+  marital_status = factor(marital_status, levels=c("Married","Widowed","Divorced","Separated","Never married")),
+  race= case_when(
+    racea==100~"White",
+    racea==200~"Black/African-American",
+    racea==300~"Aleut, Alaskan Native, or American Indian",
+    racea==310~"Alaskan Native or American Indian",
+    racea==320~"Alaskan Native/Eskimo",
+    racea==330~"Aleut",
+    racea==340~"American Indian",
+    racea==350~"American Indian or Alaskan Native and any other group",
+    racea==400~"Asian or Pacific Islander",
+    racea==410~"Asian",
+    racea==411~"Chinese",
+    racea==412~"Filipino",
+    racea==413~"Korean",
+    racea==414~"Vietnamese",
+    racea==415~"Japanese",
+    racea==416~"Asian Indian",
+    racea==420~"Pacific Islander",
+    racea==421~"Hawaiian",
+    racea==422~"Samoan",
+    racea==423~"Guamanian",
+    racea==430~"Other Asian or Pacific Islander",
+    racea==431~"Other Asian or Pacific Islander (1992-1995)",
+    racea==432~"Other Asian or Pacific Islander (1996)",
+    racea==433~"Other Asian or Pacific Islander (1997-1998)",
+    racea==434~"Other Asian (1999 forward)",
+    racea==500~"Other Race",
+    racea==510~"Other Race (1963-1977)",
+    racea==520~"Other Race (1978)",
+    racea==530~"Other Race (1979-1991)",
+    racea==540~"Other Race (1992-1995)",
+    racea==550~"Other Race (1996)",
+    racea==560~"Other Race (1997-1998)",
+    racea==570~"Other Race (1999-2002)",
+    racea==580~"Primary Race not releasable",
+    racea==600~"Multiple Race, No Primary Race Selected",
+    racea==610~"Multiple Race, including Asian, excluding Black and White",
+    racea==611~"Multiple Race, including Asian and Black, excluding White",
+    racea==612~"Multiple Race, including Asian and White, excluding Black",
+    racea==613~"Multiple Race, including Black, excluding Asian and White",
+    racea==614~"Multiple Race, including Black and White, excluding Asian",
+    racea==615~"Multiple Race, including White, excluding Asian and Black",
+    racea==616~"Multiple Race, including Asian, White, and Black",
+    racea==617~"Multiple Race, excluding Asian, White, and Black"
+  ),
+  race = factor(race, 
+                levels=c("White", "Black/African-American", "Aleut, Alaskan Native, or American Indian", "Alaskan Native or American Indian", "Alaskan Native/Eskimo", "Aleut", "American Indian", "American Indian or Alaskan Native and any other group", "Asian or Pacific Islander", "Asian", "Chinese", "Filipino", "Korean", "Vietnamese", "Japanese", "Asian Indian", "Pacific Islander", "Hawaiian", "Samoan", "Guamanian", "Other Asian or Pacific Islander", "Other Asian or Pacific Islander (1992-1995)", "Other Asian or Pacific Islander (1996)", "Other Asian or Pacific Islander (1997-1998)", "Other Asian (1999 forward)", "Other Race", "Other Race (1963-1977)", "Other Race (1978)", "Other Race (1979-1991)", "Other Race (1992-1995)", "Other Race (1996)", "Other Race (1997-1998)", "Other Race (1999-2002)", "Primary Race not releasable", "Multiple Race, No Primary Race Selected", "Multiple Race, including Asian, excluding Black and White", "Multiple Race, including Asian and Black, excluding White", "Multiple Race, including Asian and White, excluding Black", "Multiple Race, including Black, excluding Asian and White", "Multiple Race, including Black and White, excluding Asian", "Multiple Race, including White, excluding Asian and Black", "Multiple Race, including Asian, White, and Black", "Multiple Race, excluding Asian, White, and Black"
+                )),
+  education = case_when(
+    educ==100~"Grade 12 or less",
+    educ==101~"Grade 12 or less",
+    educ==102~"Never attended/kindergarten only",
+    educ==103~"Grade 12 or less",
+    educ==104~"Grade 12 or less",
+    educ==105~"Grade 12 or less",
+    educ==106~"Grade 12 or less",
+    educ==107~"Grade 12 or less",
+    educ==108~"Grade 12 or less",
+    educ==109~"Grade 12 or less",
+    educ==110~"Grade 12 or less",
+    educ==111~"Grade 12 or less",
+    educ==112~"Grade 12 or less",
+    educ==113~"Grade 12 or less",
+    educ==114~"Grade 12 or less",
+    educ==115~"Grade 12 or less",
+    educ==116~"Grade 12 or less",
+    educ==200~"High school",
+    educ==201~"High school",
+    educ==202~"GED or equivalent",
+    educ==300~"Some college",
+    educ==301~"Some college",
+    educ==302~"AA degree",
+    educ==303~"AA degree",
+    educ==400~"Bachelor's",
+    educ==501~"Master's",
+    educ==502~"Professional",
+    educ==503~"Doctoral"
+  ),
+  education = factor(
+    education,
+    levels=c(
+      "Grade 12 or less","Never attended/kindergarten only","High school","GED or equivalent","Some college","AA degree","Bachelor's","Master's","Professional","Doctoral"
+    )
+  )
+)
 ```
 
 # Introduction
@@ -40,46 +239,20 @@ filtered_df_2021 <- read.csv(here::here("data/02-analysis_data/model_data_2021.c
 Mental health issues, particularly depression, have emerged as a significant public health concern globally. Among other factors influencing mental health, [gender and education] stand out as critical determinants. Recent studies have also indicated that educational attainment may play a protective role against depression, suggesting that individuals with higher education levels experience lower rates of mental health issues. Conversely, gender disparities in depression prevalence remain pronounced, with research consistently showing that women report higher rates of depression than their male counterparts, even when controlling for education levels.
 Therefore our key questions underpinning this research include: does higher education correlate with lower rates of depression? Are women disproportionately affected by depression compared to men at the same educational level? Can we develop a model that predicts the likelihood of a [KSUM score of 13 or higher] given certain characteristics of an individual [please list the characteristics we used here, and what we called them in your data or graphs]? To address these questions, we analyze national census data through various statistical methods, focusing on the intersection of gender, education, income, and mental health outcomes [please cite the IPUMs dataset here, with a footnote on how you selected your filters].
 
-This study employs a statistical approach in R  to examine the relationships between gender, educational attainment, income and reported cases of mental depression. By exploring these dynamics, we hope to contribute to a deeper understanding of how education and gender intersect to influence mental health, providing valuable insights for policymakers and mental health practitioners.
+This study employs a statistical approach in R to examine the relationships between gender, educational attainment, income and reported cases of mental depression. By exploring these dynamics, we hope to contribute to a deeper understanding of how education and gender intersect to influence mental health, providing valuable insights for policymakers and mental health practitioners.
 
 The remainder of this paper is structured as follows: Section 2 presents the data and methodology, detailing the statistical techniques used for analysis. Section 3 discusses the modeling strategy and expected outcomes, followed by a presentation of results in Section 4. Finally, Section 5 engages in a critical discussion of our findings, addressing their implications for future research and policy.
 
-Estimand paragraph
+Therefore our key questions underpinning this research include: does higher education correlate with lower rates of depression? Are women disproportionately affected by depression compared to men at the same educational level? Can we develop a model that predicts the likelihood of psychological distress given certain characteristics of an individual such as sex, education or age? To address these questions, we analyze national census data through various statistical methods, focusing on the intersection of gender, education, and mental health outcomes.
 
-Results paragraph
-
-Why it matters paragraph
 Predictive models - even simplified ones like the one we present below - are helpful for understanding complex issues like mental health. They allow researchers and policymakers spot trends and make smarter decisions. By looking at how factors like gender and education connect to depression, these models show patterns which lets us identify at-risk groups early, and lets us provide tailored support and resources to those who need it most. Plus, predictive models help direct future research by pointing out where more exploration is needed, ensuring we keep learning and improving our approach to mental health. In a time when mental well-being is more important than ever, being able to predict and tackle what affects it is key to building healthier communities.
 
-Telegraphing paragraph: The remainder of this paper is structured as follows. @sec-data....
+The remainder of this paper is structured as follows: @sec-data presents the data and methodology, detailing the statistical techniques used for analysis. @sec-model-desc discusses the modeling strategy and expected outcomes, followed by a presentation of results in @sec-result. Finally, @sec-discussion engages in a critical discussion of our findings, addressing their implications for future research and policy.
 
 # Data {#sec-data}
 
-```{r}
-#| label: fig-education
-#| fig-cap: Education
-#| warning: false
-#| message: false
-#| echo: false
-# labeled_df |>
-#   ggplot(aes(x = label_education, fill = label_outcome)) +
-#   stat_count(position = "dodge") +
-#   facet_wrap(facets = vars(label_sex)) +
-#   theme_minimal() +
-#   labs(
-#     x = "Highest education",
-#     y = "Number of respondents",
-#     fill = "Mental Depression"
-#   ) +
-#   coord_flip() +
-#   scale_fill_brewer(palette = "Set2") +
-#   theme(legend.position = "bottom")
-```
-
 ## Overview
-We used the Medical Expenditure Panel Survey dataset from the Integrated Public Use Microdata Series, which contains microdata from different time points related to U.S. healthcare expenditures [@blewett_ipums_2023]. We performed all analysis using a popular statistical language called R [@citeR]. Our dataset contains age, sex, marital status, race, highest level of education attainment, total personal income, and K6 score [@kessler_kessler_2012].All the variable definitions can be found in the Appendix [-@sec-appendix-data-details].
-
-Our goal was to identify people, based on gender and education, who are suffering from non-specific psychological distress based on the Kessler scale [@kessler_kessler_2012] before and after the COVID-19 pandemic.
+We used the Medical Expenditure Panel Survey(MEPS) dataset from the Integrated Public Use Microdata Series, which contains microdata from different time points related to U.S. healthcare expenditures [@blewett_ipums_2023]. We performed all analysis using a popular statistical language called R [@citeR]. Our dataset contains age, sex, marital status, race, highest level of education attainment, total personal income, and K6 score [@kessler_kessler_2012].All the variable definitions can be found in the Appendix [-@sec-appendix-data-details].
 
 Our goal was to identify respondents, based on gender and education, who were suffering from non-specific psychological distress based on the Kessler scale before and after the COVID-19 pandemic. To support our analyses, we split into two datasets for 2018 and 2021. We also excluded the respondents whose ages are below 19 and over 80. After enforcing our inclusion criteria, we had 15716 respondents for 2018 and 12685 for 2021. To give a preview of our data, @tbl-2018 and @tbl-2021 show the first five rows for each row for 2018 and 2021, respectively.
 ```{r}
@@ -112,67 +285,241 @@ kable(filtered_df_2021[1:5,c("year","age","sex","marstat","racea","educ","inctot
 
 ### Gender and Mental Health
 
-Research consistently shows that women report higher rates of depression than men (CITE). Biological, social, and psychological factors contribute to this disparity. Women may experience unique stressors, such as role strain from balancing work and family obligations, as well as being subject to gender-based discrimination (CITE). These pressures can exacerbate mental health issues, leading to higher rates of depression among women, particularly those in lower socioeconomic or educational strata.
+Research consistently shows that women report higher rates of depression than men [@van_de_velde_gender_2010]. Biological, social, and psychological factors contribute to this disparity. Women may experience unique stressors, such as role strain from balancing work and family obligations, as well as being subject to gender-based discrimination. Townsend et al. see this as, "competing demands between work and the gendered expectations of domestic labor for women", which can "result in relatively more work–family conflict." Plus, they note that "this tension between work and family tends to increase among women over their lifetime" [@townsend_holding_2024]. These pressures can exacerbate mental health issues, leading to higher rates of depression among women, particularly those  in lower socioeconomic or educational strata.
 
 ### Educational Attainment and Mental Health
 
-Education is often seen as a protective factor against mental health issues. Studies suggest that higher levels of education correlate with improved mental health outcomes (CITE). Educated individuals tend to have better access to mental health resources, higher socioeconomic status, and greater job security, all of which contribute to lower rates of depression (CITE). Conversely, those with lower education levels may face more financial strain, reduced employment opportunities, and limited access to healthcare, increasing their vulnerability to depression.
+Education is often seen as a protective factor against mental health issues. Studies have mixed results when studying if higher levels of education correlate with improved mental health outcomes [@tabor_mental_2021]. Educated individuals do, however, tend to have better access to mental health resources, higher socioeconomic status, and greater job security, all of which contribute to lower rates of depression. Indeed, socioeconomic factor "is a consistent and reliable predictor of a vast array of outcomes across the life span, including physical and psychological health." [@noauthor_education_nodate]. Conversely, those with lower education levels may face more financial strain, reduced employment opportunities, and limited access to healthcare, increasing their vulnerability to depression.
 
 ### Intersection of Gender, Education, and Depression
 
-Despite the protective nature of education, the gender gap in mental health persists even at higher levels of educational attainment. Some studies suggest that women with high education levels still experience depression due to external stressors, including workplace discrimination and societal expectations (CITE). Additionally, the mental health benefits of education may differ between genders, with men benefiting more from the social status and economic opportunities that education provides, while women may continue to face challenges related to gender roles (cite).
+Despite the protective nature of education, the gender gap in mental health persists even at higher levels of educational attainment. Some studies suggest that women with high education levels still experience depression due to external stressors, including workplace discrimination and societal expectations. Acording to Ross et.al., "Academics report stress and waning resilience, fatigue and exhaustion, and a destabilization of the work-life balance. Furthermore, these impacts are unequally experienced by women with children and those with caring responsibilities" [@ross_stress_2023]. Additionally, the mental health benefits of education may differ between genders, with men benefiting more from the social status and economic opportunities that education provides, while women may continue to face challenges related to gender roles.
 
 
 ## Outcome variables
 
-Add graphs, tables and text. Use sub-sub-headings for each outcome variable or update the subheading to be singular.
-
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+The MEPS survey collects participants' K6 score for nonspecific psychological distress. The K6 score is a summed scale value, also known as the Kessler 6 Scale, which considers six manifestations of nonspecific psychological distress. A score of 13 or higher indicates likely severe mental illness [@kessler_kessler_2012]. The variable called K6SUM represents the score in our dataset [-@sec-appendix-data-details]. We constructed a new variable called "outcome," where 0 represents the score below 13 and 1 represents the score above 13. We considered zero as a person who is not experiencing psychological distress, denoted as "No," and one as a person experiencing severe psychological distress, denoted as "Yes." @fig-respondent-outcome represents the number of respondents we have in the dataset who were suffering from psychological distress. In 2018, 601 respondents were suffering severe psychological distress, where the number of total respondents was 15716. In 2021, 573 respondents were suffering from nonspecific psychological distress over the 30-day recall period, where the total number of respondents was 12685.
 
 ```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
-#| echo: false
-
-# ggplot(penguins, aes(x = island, fill = species)) +
-#   geom_bar(alpha = 0.8) +
-#   scale_fill_manual(values = c("darkorange","purple","cyan4"),
-#                     guide = "none") +
-#   theme_minimal() +
-#   facet_wrap(~species, ncol = 1) +
-#   coord_flip()
-```
-
-Talk more about it.
-
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
-
-```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
+#| label: fig-respondent-outcome
+#| fig-cap: Number of Respondents Suffering Severe Psychological Distress
+#| fig-subcap: 
+#|  - "2018"
+#|  - "2021"
+#| layout-ncol: 2
 #| echo: false
 #| warning: false
-#| message: false
+max_count <- max(table(labeled_df_reduced_2018$outcome)) + 1000
+labeled_df_reduced_2018 |> 
+  ggplot(aes(x = outcome)) +
+  geom_histogram(stat = "count", fill = "#013065", color = "white") +
+  scale_y_continuous(limits = c(0, max_count)) +
+  geom_text(
+    stat = "count", 
+    color = "black",
+    aes(label = after_stat(count)), 
+    vjust = -0.6,  # Adjust vertical position of labels
+    size = 5       # Adjust size of labels
+  ) +
+  labs(title = "", 
+       x = "Outcome", 
+       y = "Frequency") +
+  theme_light()+
+  theme(
+    plot.title = element_text(size = 20, face = "bold"),  # Title font size
+    axis.title.x = element_text(size = 16),               # X-axis label size
+    axis.title.y = element_text(size = 16),               # Y-axis label size
+    axis.text = element_text(size = 14)                   # Axis text size (ticks)
+  )
 
-# analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
-# 
-# analysis_data |> 
-#   ggplot(aes(x = width, y = length)) +
-#   geom_point(alpha = 0.8) +
-#   theme_minimal() +
-#   labs(x = "Wing width (mm)",
-#        y = "Wing length (mm)")
+max_count <- max(table(labeled_df_reduced_2021$outcome)) + 1000
+labeled_df_reduced_2021 |> 
+  ggplot(aes(x = outcome)) +
+  geom_histogram(stat = "count", fill = "#013065", color = "white") +
+  scale_y_continuous(limits = c(0, max_count)) +
+  geom_text(
+    stat = "count", 
+    color = "black",
+    aes(label = after_stat(count)), 
+    vjust = -0.3,  # Adjust vertical position of labels
+    size = 5       # Adjust size of labels
+  ) +
+  labs(title = "", 
+       x = "Outcome", 
+       y = "Frequency") +
+  theme_light()+
+  theme(
+    plot.title = element_text(size = 20, face = "bold"),  # Title font size
+    axis.title.x = element_text(size = 16),               # X-axis label size
+    axis.title.y = element_text(size = 16),               # Y-axis label size
+    axis.text = element_text(size = 14)                   # Axis text size (ticks)
+  )
 ```
 
-Talk way more about it.
+\newpage
 
 ## Predictor variables
 
-Add graphs, tables and text.
+We discuss the predictor variables in this section. We primarily use sex and education variables for our analysis. However, we also discuss marital status, race, and total income to understand our dataset better.
 
-Use sub-sub-headings for each outcome variable and feel free to combine a few into one if they go together naturally.
+### Sex
 
-# Model
+Our dataset has 8209 female respondents and 7507 male respondents for 2018. In 2021, the total number of respondents is lower compared to 2018. We have 6784 female respondents and 5901 male respondents for 2021 [@fig-sex].
+
+
+```{r}
+#| label: fig-sex
+#| fig-cap: Distribution of Respondents by Sex
+#| fig-subcap: 
+#|  - "2018"
+#|  - "2021"
+#| layout-ncol: 2
+#| echo: false
+#| warning: false
+
+max_count <- max(table(labeled_df_reduced_2018$sex)) + 1000
+labeled_df_reduced_2018 |> 
+  ggplot(aes(x = sex)) +
+  geom_histogram(stat = "count", fill = "#013065", color = "white") +
+  scale_y_continuous(limits = c(0, max_count)) +
+  geom_text(
+    stat = "count", 
+    color = "black",
+    aes(label = after_stat(count)), 
+    vjust = -0.3,  # Adjust vertical position of labels
+    size = 5       # Adjust size of labels
+  ) +
+  labs(title = "Sex", 
+       x = "Sex", 
+       y = "Frequency") +
+  theme_light()+
+  theme(
+    plot.title = element_text(size = 20, face = "bold"),  # Title font size
+    axis.title.x = element_text(size = 16),               # X-axis label size
+    axis.title.y = element_text(size = 16),               # Y-axis label size
+    axis.text = element_text(size = 14)                   # Axis text size (ticks)
+  )
+max_count <- max(table(labeled_df_reduced_2021$sex)) + 1000
+labeled_df_reduced_2021 |> 
+  ggplot(aes(x = sex)) +
+  geom_histogram(stat = "count", fill = "#013065", color = "white") +
+  scale_y_continuous(limits = c(0, max_count)) +
+  geom_text(
+    stat = "count", 
+    color = "black",
+    aes(label = after_stat(count)), 
+    vjust = -0.3,  # Adjust vertical position of labels
+    size = 5       # Adjust size of labels
+  ) +
+  labs(title = "Sex", 
+       x = "Sex", 
+       y = "Frequency") +
+  theme_light()+
+  theme(
+    plot.title = element_text(size = 20, face = "bold"),  # Title font size
+    axis.title.x = element_text(size = 16),               # X-axis label size
+    axis.title.y = element_text(size = 16),               # Y-axis label size
+    axis.text = element_text(size = 14)                   # Axis text size (ticks)
+  )
+```
+
+### Education
+
+There are 36 categories in the education variable. Five of them represent the missing value or refused to answer. We discarded these values. We also discarded the 500, 504, and 505 codes as they represent overlap (e.g., 500 represents a Master's, Professional, or Doctoral Degree). We also merge the categories of education. Details are available in the @sec-appendix-education-recoding. 
+
+@fig-education-2018 and @fig-education-2021 depict the overall education status of our respondents. For both 2018 and 2022, a majority of respondents have at least a high school degree, followed by a bachelor's degree.
+```{r}
+#| label: fig-education-2018
+#| fig-cap: Distribution of Respondents by Education (2018)
+#| echo: false
+#| warning: false
+max_count <- max(table(labeled_df_reduced_2018$education)) + 1000
+labeled_df_reduced_2018 |> 
+  ggplot(aes(x = education)) +
+  geom_histogram(stat = "count", binwidth = 5, fill = "#013065", color = "white") +
+  scale_y_continuous(limits = c(0, max_count)) +
+  geom_text(
+    stat = "count", 
+    color = "black",
+    aes(label = after_stat(count)), 
+    vjust = -0.3,  # Adjust vertical position of labels
+    size = 3       # Adjust size of labels
+  ) +
+  labs(title = "Education", 
+       x = "Education", 
+       y = "Frequency") +
+  theme_light()+
+  theme(
+    plot.title = element_text(size = 15, face = "bold"),  # Title font size
+    axis.title.x = element_text(size = 10),               # X-axis label size
+    axis.title.y = element_text(size = 10),               # Y-axis label size
+    axis.text = element_text(size = 10),              # Axis text size (ticks)
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+```{r}
+#| label: fig-education-2021
+#| fig-cap: Distribution of Respondents by Education (2021)
+#| echo: false
+#| warning: false
+
+max_count <- max(table(labeled_df_reduced_2021$education)) + 1000
+labeled_df_reduced_2021 |> 
+  ggplot(aes(x = education)) +
+  geom_histogram(stat = "count", binwidth = 5, fill = "#013065", color = "white") +
+  scale_y_continuous(limits = c(0, max_count)) +
+  geom_text(
+    stat = "count", 
+    color = "black",
+    aes(label = after_stat(count)), 
+    vjust = -0.3,  # Adjust vertical position of labels
+    size = 3       # Adjust size of labels
+  ) +
+  labs(title = "Education", 
+       x = "Education", 
+       y = "Frequency") +
+  theme_light()+
+  theme(
+    plot.title = element_text(size = 15, face = "bold"),  # Title font size
+    axis.title.x = element_text(size = 10),               # X-axis label size
+    axis.title.y = element_text(size = 10),               # Y-axis label size
+    axis.text = element_text(size = 10),              # Axis text size (ticks)
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+\newpage
+
+### Age
+
+@fig-age The histogram demonstrates the overview of the age data distribution, depicting the high and low frequencies. The highest concentration of respondents is above the age of 60. Our dataset has a relatively low representation of the younger population.  
+
+```{r}
+#| label: fig-age
+#| fig-cap: Distribution of Respondents by Education (2021)
+#| echo: false
+#| warning: false
+
+max_count <- max(table(labeled_df_reduced_2021$age)) + 1000
+labeled_df_reduced_2021 |> 
+  ggplot(aes(x = age)) +
+  geom_histogram(fill = "#013065", color = "white") +
+  scale_y_continuous(limits = c(0, max_count)) +
+  labs(title = "Age", 
+       x = "Age", 
+       y = "Frequency") +
+  theme_light()+
+  theme(
+    plot.title = element_text(size = 15, face = "bold"),  # Title font size
+    axis.title.x = element_text(size = 10),               # X-axis label size
+    axis.title.y = element_text(size = 10),               # Y-axis label size
+    axis.text = element_text(size = 10),              # Axis text size (ticks)
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+\newpage
+
+# Model {#sec-model-desc}
 
 The goal of our modelling strategy is twofold. Firstly,...
 
@@ -199,7 +546,7 @@ We expect a positive relationship between the size of the wings and time spent a
 
 We can use maths by including latex between dollar signs, for instance $\theta$.
 
-# Results
+# Results {#sec-result}
 
 Our results are summarized in @tbl-lrmodelresults.
 
@@ -236,7 +583,7 @@ Our results are summarized in @tbl-lrmodelresults.
 # )
 ```
 
-# Discussion
+# Discussion {#sec-discussion}
 
 ## First discussion point {#sec-first-point}
 
@@ -372,6 +719,40 @@ score of 13 or greater are likely to be experiencing severe mental
 illness.<br><br>Kessler's instrument asks how often, during the past 30 days, the respondent felt:<br><br>So sad that nothing could cheer you up? (ASAD)<br><br>Nervous? (ANERVOUS)<br><br>Restless or fidgety? (ARESTLESS)<br><br>Hopeless? (AHOPELESS)<br><br>That everything was an effort? (AEFFORT)<br><br>Worthless? (AWORTHLESS)<br>As noted above, acceptable responses fell into five categories, ranging from "none of the time" to "all of the time."</td></tr><tr><td class="label">Concept:</td><td class="value">Adult Mental Health Variables -- PERSON</td></tr><tr><td class="label">Start Position:</td><td class="value">120</td></tr><tr><td class="label">End Position:</td><td class="value">121</td></tr><tr><td class="label">Width:</td><td class="value">2</td></tr><tr><td class="label">Variable Format:</td><td class="value">numeric</td></tr><tr><td class="label">Implied Decimal Places:</td><td class="value">0</td></tr><tr><td class="table_heading" colspan="2">Categories</td></tr><tr><td colspan="2" class="value"></td></tr></tbody></table>
 <table class="cats"><tbody><tr><th class="cat_val">Value</th><th class="cat_lbl">Label</th></tr><tr><td class="cat_val">96</td><td class="cat_lbl">NIU</td></tr><tr><td class="cat_val">98</td><td class="cat_lbl">Unknown-not ascertained</td></tr></tbody></table>
 ```
+
+## Education Recoding {#sec-appendix-education-recoding}
+
+100~"Grade 12 or less",
+101~"Grade 12 or less",
+102~"Never attended/kindergarten only",
+103~"Grade 12 or less",
+104~"Grade 12 or less",
+105~"Grade 12 or less",
+106~"Grade 12 or less",
+107~"Grade 12 or less",
+108~"Grade 12 or less",
+109~"Grade 12 or less",
+110~"Grade 12 or less",
+111~"Grade 12 or less",
+112~"Grade 12 or less",
+113~"Grade 12 or less",
+114~"Grade 12 or less",
+115~"Grade 12 or less",
+116~"Grade 12 or less",
+200~"High school",
+201~"High school",
+202~"GED or equivalent",
+300~"Some college",
+301~"Some college",
+302~"AA degree",
+303~"AA degree",
+400~"Bachelor's",
+501~"Master's",
+502~"Professional",
+503~"Doctoral"
+
+
+
 # Model details {#sec-model-details}
 
 ## Posterior predictive check
