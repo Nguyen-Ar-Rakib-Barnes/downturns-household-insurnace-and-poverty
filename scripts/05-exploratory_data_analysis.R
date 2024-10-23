@@ -381,6 +381,8 @@ mental_illness_2021 <-
       normal(location = 0, scale = 2.5, autoscale = TRUE),
     seed = 853
   )
+
+
 # 
 # 
 
@@ -405,7 +407,8 @@ modelsummary(
   ),
   statistic = "mad"
 )
-
+modelplot(mental_illness_2018, conf_level = 0.9) +
+  labs(x = "90 per cent credibility interval")
 
 modelsummary(
   list(
@@ -413,7 +416,8 @@ modelsummary(
   ),
   statistic = "mad"
 )
-
+modelplot(mental_illness_2021, conf_level = 0.9) +
+  labs(x = "90 per cent credibility interval")
 
 # Calculate log-odds (Intercept + Coefficient)
 intercept <- coef(mental_illness_2021)["(Intercept)"]
