@@ -387,7 +387,7 @@ labeled_df_reduced_2018 |>
     vjust = -0.3,  # Adjust vertical position of labels
     size = 5       # Adjust size of labels
   ) +
-  labs(title = "Sex", 
+  labs(title = " ", 
        x = "Sex", 
        y = "Frequency") +
   theme_light()+
@@ -409,7 +409,7 @@ labeled_df_reduced_2021 |>
     vjust = -0.3,  # Adjust vertical position of labels
     size = 5       # Adjust size of labels
   ) +
-  labs(title = "Sex", 
+  labs(title = " ", 
        x = "Sex", 
        y = "Frequency") +
   theme_light()+
