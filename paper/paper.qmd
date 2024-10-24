@@ -1,5 +1,6 @@
 ---
-title: "Gender and Mental Depression: Analyzing Census Data Through Statistical Methods"
+title: "Sex, education, and mental health: Analyzing American census data through statistical methods, 2018 to 2021"
+subtitle: "A pre- and post-pandemic study with IPUM's MEPs data"
 author: 
   - Christina Nguyen
   - Marcus Barnes
