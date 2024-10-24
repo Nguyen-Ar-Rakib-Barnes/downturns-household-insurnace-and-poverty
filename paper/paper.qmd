@@ -519,7 +519,7 @@ labeled_df_reduced_2021 |>
 
 # Model {#sec-model-desc}
 
-We leverage the logistic regression model to identify the association between suffering from psychological distress with sex and education. We set our model following the @tellingstories guidelines with the rstanarm package [@rstanarm_goodrich, @rstanarm_brilleman] in R [@citer].
+We use a logistic regression model to identify the association between suffering from psychological distress with sex and education. We set our model following the @tellingstories guidelines with the rstanarm package [@rstanarm_goodrich, @rstanarm_brilleman] in R [@citer].
 
 Logistic regression is a commonly used regression model when the outcome variable is binary [@tellingstories]. For our dataset, we introduce an outcome variable, which represents whether an individual is suffering from psychological distress. As a predictor variable for the logistic regression, we will use the sex and education variables discussed in the @sec-data.
 
