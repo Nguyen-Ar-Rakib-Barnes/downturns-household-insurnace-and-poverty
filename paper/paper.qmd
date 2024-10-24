@@ -490,7 +490,7 @@ labeled_df_reduced_2021 |>
 
 ### Age
 
-@fig-age The histogram demonstrates the overview of the age data distribution, depicting the high and low frequencies. The highest concentration of respondents is above the age of 60. Our dataset has a relatively low representation of the younger population.  
+@fig-age demonstrates the overview of the age data distribution, depicting the high and low frequencies. The highest concentration of respondents is above the age of 60. Our dataset has a relatively low representation of the younger population.  
 
 ```{r}
 #| label: fig-age
