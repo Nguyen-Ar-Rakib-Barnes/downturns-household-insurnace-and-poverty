@@ -1,8 +1,8 @@
 # Sex, Education, and Mental Depression: Analyzing Census Data Through Statistical Methods (U.S.A., 2018 and 2021) 
 
 ## Contact information
-Christina Nguyen: christinadinh.nguyen@utoronto.ca
-Marcus Barnes: marcus.barnes@utoronto.ca
+Christina Nguyen: christinadinh.nguyen@utoronto.ca  
+Marcus Barnes: marcus.barnes@utoronto.ca  
 Nibras Ar Rakib: nibras.rakib@mail.utoronto.ca
 
 ## Overview
