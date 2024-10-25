@@ -1,15 +1,13 @@
 #### Preamble ####
-# Purpose: Tests the structure and validity of the simulated Australian 
-  #electoral divisions dataset.
-# Author: Rohan Alexander
-# Date: 26 September 2024
-# Contact: rohan.alexander@utoronto.ca
+# Purpose: Tests the structure and validity of the simulated IPUMS 
+  #MEPS dataset.
+# Author: Christina Nguyen - Marcus Barnes - Nibras Ar Rakib
+# Date: 24 October 2024
+# Contact: nibras.rakib@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: 
   # - The `tidyverse` package must be installed and loaded
   # - 00-simulate_data.R must have been run
-# Any other information needed? Make sure you are in the `starter_folder` rproj
-
 
 #### Workspace setup ####
 library(tidyverse)
@@ -25,65 +23,34 @@ if (exists("analysis_data")) {
 
 
 #### Test data ####
-
-# Check if the dataset has 151 rows
-if (nrow(analysis_data) == 151) {
-  message("Test Passed: The dataset has 151 rows.")
+# Check if the dataset 2018,2021 year
+valid_years <- c(2018, 2021)
+if (all(analysis_data$year %in% valid_years)) {
+  message("Test Passed: The 'Year' column contains only 2018 and 2021.")
 } else {
-  stop("Test Failed: The dataset does not have 151 rows.")
+  stop("Test Failed: The 'Year' column contains invalid year.")
 }
 
 # Check if the dataset has 3 columns
-if (ncol(analysis_data) == 3) {
-  message("Test Passed: The dataset has 3 columns.")
+if (ncol(analysis_data) == 8) {
+  message("Test Passed: The dataset has 8 columns.")
 } else {
-  stop("Test Failed: The dataset does not have 3 columns.")
+  stop("Test Failed: The dataset does not have 8 columns.")
 }
 
-# Check if all values in the 'division' column are unique
-if (n_distinct(analysis_data$division) == nrow(analysis_data)) {
-  message("Test Passed: All values in 'division' are unique.")
-} else {
-  stop("Test Failed: The 'division' column contains duplicate values.")
+# Check if the sex column has 2 unique values
+valid_sex <- c("Male","Female")
+dataset_sex <- unique(analysis_data$sex)
+if(all(valid_sex %in% dataset_sex)){
+  message("Test Passed: variable sex is valid.")
+} else{
+  message("Test Failed: variable sex is invalid")
 }
 
-# Check if the 'state' column contains only valid Australian state names
-valid_states <- c("New South Wales", "Victoria", "Queensland", "South Australia", 
-                  "Western Australia", "Tasmania", "Northern Territory", 
-                  "Australian Capital Territory")
-
-if (all(analysis_data$state %in% valid_states)) {
-  message("Test Passed: The 'state' column contains only valid Australian state names.")
-} else {
-  stop("Test Failed: The 'state' column contains invalid state names.")
-}
-
-# Check if the 'party' column contains only valid party names
-valid_parties <- c("Labor", "Liberal", "Greens", "National", "Other")
-
-if (all(analysis_data$party %in% valid_parties)) {
-  message("Test Passed: The 'party' column contains only valid party names.")
-} else {
-  stop("Test Failed: The 'party' column contains invalid party names.")
-}
-
-# Check if there are any missing values in the dataset
-if (all(!is.na(analysis_data))) {
-  message("Test Passed: The dataset contains no missing values.")
-} else {
-  stop("Test Failed: The dataset contains missing values.")
-}
-
-# Check if there are no empty strings in 'division', 'state', and 'party' columns
-if (all(analysis_data$division != "" & analysis_data$state != "" & analysis_data$party != "")) {
-  message("Test Passed: There are no empty strings in 'division', 'state', or 'party'.")
-} else {
-  stop("Test Failed: There are empty strings in one or more columns.")
-}
-
-# Check if the 'party' column has at least two unique values
-if (n_distinct(analysis_data$party) >= 2) {
-  message("Test Passed: The 'party' column contains at least two unique values.")
-} else {
-  stop("Test Failed: The 'party' column contains less than two unique values.")
+# Check if the K6SUM column has value from 0-24
+valid_k6sum<-c(0:24)
+if(all(unique(analysis_data$k6sum) %in% valid_k6sum)){
+  message("Test Passed: variable K6SUM is valid.")
+} else{
+  message("Test Failed: variable K6SUM is invalid")
 }

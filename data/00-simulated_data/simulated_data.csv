@@ -1,152 +1,501 @@
-division,state,party
-Division 1,Victoria,Liberal
-Division 2,New South Wales,Liberal
-Division 3,Tasmania,Liberal
-Division 4,New South Wales,Liberal
-Division 5,Queensland,Liberal
-Division 6,New South Wales,Labor
-Division 7,Victoria,Liberal
-Division 8,Western Australia,Labor
-Division 9,Western Australia,Greens
-Division 10,Queensland,Labor
-Division 11,Queensland,Labor
-Division 12,Northern Territory,Liberal
-Division 13,New South Wales,Labor
-Division 14,Western Australia,Labor
-Division 15,Western Australia,National
-Division 16,Victoria,Liberal
-Division 17,South Australia,Liberal
-Division 18,Victoria,Liberal
-Division 19,Western Australia,Labor
-Division 20,South Australia,Labor
-Division 21,New South Wales,Liberal
-Division 22,Queensland,Greens
-Division 23,New South Wales,Liberal
-Division 24,New South Wales,Liberal
-Division 25,Queensland,Labor
-Division 26,Victoria,National
-Division 27,New South Wales,Liberal
-Division 28,Queensland,Liberal
-Division 29,Tasmania,Liberal
-Division 30,South Australia,Liberal
-Division 31,New South Wales,Liberal
-Division 32,Victoria,Labor
-Division 33,Tasmania,Liberal
-Division 34,New South Wales,Liberal
-Division 35,Western Australia,Labor
-Division 36,New South Wales,Liberal
-Division 37,Tasmania,Greens
-Division 38,Tasmania,Labor
-Division 39,Victoria,Greens
-Division 40,South Australia,Labor
-Division 41,New South Wales,Other
-Division 42,New South Wales,Other
-Division 43,Tasmania,Labor
-Division 44,Tasmania,National
-Division 45,Queensland,Liberal
-Division 46,Australian Capital Territory,Other
-Division 47,Queensland,Labor
-Division 48,Queensland,Other
-Division 49,South Australia,Liberal
-Division 50,Victoria,National
-Division 51,South Australia,Liberal
-Division 52,Victoria,Labor
-Division 53,South Australia,National
-Division 54,Queensland,Liberal
-Division 55,Queensland,Labor
-Division 56,South Australia,Liberal
-Division 57,New South Wales,Other
-Division 58,Northern Territory,Liberal
-Division 59,New South Wales,Labor
-Division 60,Western Australia,Labor
-Division 61,New South Wales,Liberal
-Division 62,South Australia,Liberal
-Division 63,Queensland,Labor
-Division 64,Tasmania,Labor
-Division 65,South Australia,Labor
-Division 66,Victoria,Labor
-Division 67,Queensland,Liberal
-Division 68,Queensland,Liberal
-Division 69,Tasmania,Labor
-Division 70,South Australia,National
-Division 71,Australian Capital Territory,Labor
-Division 72,Western Australia,Labor
-Division 73,Queensland,National
-Division 74,Victoria,Labor
-Division 75,Western Australia,Labor
-Division 76,Tasmania,Labor
-Division 77,Queensland,Liberal
-Division 78,Western Australia,Liberal
-Division 79,Queensland,Labor
-Division 80,Queensland,Liberal
-Division 81,Victoria,Labor
-Division 82,New South Wales,Liberal
-Division 83,Victoria,Liberal
-Division 84,Queensland,National
-Division 85,Western Australia,Liberal
-Division 86,New South Wales,Labor
-Division 87,Queensland,Liberal
-Division 88,New South Wales,Liberal
-Division 89,Tasmania,Liberal
-Division 90,South Australia,Labor
-Division 91,Victoria,Liberal
-Division 92,New South Wales,Labor
-Division 93,Tasmania,Labor
-Division 94,South Australia,Labor
-Division 95,Victoria,Liberal
-Division 96,Victoria,Labor
-Division 97,Western Australia,Liberal
-Division 98,Queensland,Liberal
-Division 99,South Australia,Liberal
-Division 100,New South Wales,Labor
-Division 101,South Australia,Labor
-Division 102,New South Wales,Labor
-Division 103,Victoria,Labor
-Division 104,Victoria,Labor
-Division 105,South Australia,Other
-Division 106,Western Australia,Labor
-Division 107,Tasmania,Liberal
-Division 108,Victoria,Labor
-Division 109,Queensland,Liberal
-Division 110,Victoria,Labor
-Division 111,Australian Capital Territory,Labor
-Division 112,Victoria,Liberal
-Division 113,Victoria,Liberal
-Division 114,Victoria,Liberal
-Division 115,Tasmania,Labor
-Division 116,Victoria,Labor
-Division 117,New South Wales,Labor
-Division 118,Victoria,Labor
-Division 119,Victoria,Greens
-Division 120,Northern Territory,Labor
-Division 121,South Australia,Liberal
-Division 122,New South Wales,Liberal
-Division 123,New South Wales,Labor
-Division 124,New South Wales,Liberal
-Division 125,New South Wales,National
-Division 126,New South Wales,Labor
-Division 127,Queensland,Labor
-Division 128,New South Wales,Other
-Division 129,Queensland,Labor
-Division 130,Australian Capital Territory,Liberal
-Division 131,Tasmania,Greens
-Division 132,New South Wales,National
-Division 133,New South Wales,Labor
-Division 134,Northern Territory,Labor
-Division 135,South Australia,National
-Division 136,Victoria,Labor
-Division 137,Tasmania,National
-Division 138,South Australia,Liberal
-Division 139,New South Wales,Labor
-Division 140,Victoria,Other
-Division 141,Queensland,Greens
-Division 142,Victoria,National
-Division 143,Western Australia,Labor
-Division 144,Victoria,Labor
-Division 145,Queensland,Liberal
-Division 146,Tasmania,Liberal
-Division 147,South Australia,Liberal
-Division 148,Victoria,Labor
-Division 149,New South Wales,National
-Division 150,New South Wales,Labor
-Division 151,Victoria,Liberal
+year,age,sex,marstat,racea,educ,inctot,k6sum
+2018,24,Female,Divorced,Alaskan Native or American Indian,Grade 12 or less,3237,24
+2021,43,Male,Separated,"Multiple Race, including Asian and White, excluding Black",Master's degree,2083,11
+2021,43,Female,Never married,"Multiple Race, including Black and White, excluding Asian",Doctoral degree,4213,13
+2018,52,Male,Divorced,"	Multiple Race, including Asian, White, and Black",Master's degree,3116,19
+2018,70,Female,Widowed,Black/African-American,Grade 12 or less,4467,16
+2018,59,Male,Widowed,Black/African-American,Grade 12 or less,3301,4
+2018,74,Male,Divorced,Black/African-American,Doctoral degree,3916,23
+2018,28,Female,Separated,"Multiple Race, including Asian and Black, excluding White",AA degree,4341,13
+2021,79,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",AA degree,3690,9
+2021,52,Male,Divorced,"Multiple Race, including Asian and Black, excluding White",GED or equivalent,4207,16
+2018,56,Male,Separated,"Multiple Race, including White, excluding Asian and Black",AA degree,3093,4
+2018,69,Male,Widowed,White,AA degree,3652,6
+2018,38,Female,Never married,Black/African-American,GED or equivalent,4818,0
+2018,39,Female,Widowed,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,4279,1
+2018,57,Male,Divorced,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,4064,15
+2018,29,Female,Divorced,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,4421,16
+2018,26,Female,Married,"Multiple Race, including Black and White, excluding Asian",Bachelor's,4777,9
+2018,77,Male,Married,"Multiple Race, including Asian and White, excluding Black",Master's degree,3941,21
+2021,36,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,2190,14
+2018,65,Female,Never married,Alaskan Native or American Indian,Grade 12 or less,4343,9
+2021,31,Female,Married,"Multiple Race, including Black and White, excluding Asian",Grade 12 or less,4306,6
+2021,48,Female,Married,"Multiple Race, including White, excluding Asian and Black",Never attended/kindergarten only,4327,24
+2018,36,Male,Separated,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,4127,16
+2021,69,Male,Widowed,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,3038,16
+2021,36,Female,Never married,"Multiple Race, including White, excluding Asian and Black",Bachelor's,4409,12
+2021,59,Male,Separated,"Multiple Race, including Asian, excluding Black and White",Doctoral degree,1993,2
+2021,58,Female,Divorced,"Multiple Race, including Asian and Black, excluding White",Master's degree,4186,7
+2018,75,Female,Divorced,"Multiple Race, including Black and White, excluding Asian",Bachelor's,4780,11
+2021,75,Female,Divorced,"Multiple Race, including White, excluding Asian and Black",AA degree,4097,21
+2018,24,Female,Widowed,Alaskan Native or American Indian,Master's degree,1970,2
+2018,19,Male,Never married,"Multiple Race, including Black and White, excluding Asian",Bachelor's,2783,15
+2021,23,Female,Married,Alaskan Native or American Indian,Grade 12 or less,3772,11
+2018,45,Female,Divorced,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,4878,18
+2021,33,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Never attended/kindergarten only,2205,6
+2018,75,Female,Separated,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,4629,13
+2018,35,Male,Never married,"Multiple Race, including Asian and Black, excluding White",GED or equivalent,3476,2
+2018,67,Male,Divorced,"Multiple Race, including Black, excluding Asian and White",Bachelor's,2285,15
+2021,48,Female,Divorced,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,2807,16
+2018,26,Male,Married,"Multiple Race, including Black and White, excluding Asian",Grade 12 or less,3358,19
+2018,56,Male,Divorced,"Multiple Race, including Black, excluding Asian and White",Never attended/kindergarten only,3588,4
+2018,31,Male,Never married,White,Bachelor's,3461,23
+2021,75,Female,Married,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,4145,19
+2021,76,Female,Married,"	Multiple Race, including Asian, White, and Black",GED or equivalent,3199,10
+2021,65,Male,Widowed,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,2887,6
+2021,78,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,4277,8
+2018,51,Female,Widowed,White,Master's degree,4624,20
+2021,55,Male,Married,Black/African-American,Master's degree,3179,4
+2021,80,Female,Separated,Alaskan Native or American Indian,Never attended/kindergarten only,3202,12
+2018,56,Male,Never married,"	Multiple Race, including Asian, White, and Black",Bachelor's,3827,20
+2021,55,Male,Never married,"Multiple Race, including Asian and White, excluding Black",Never attended/kindergarten only,3230,7
+2021,36,Female,Separated,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,3478,15
+2021,19,Female,Widowed,White,Grade 12 or less,4524,15
+2018,33,Male,Never married,"Multiple Race, including Asian and White, excluding Black",GED or equivalent,2871,7
+2021,66,Male,Widowed,"Multiple Race, including Black and White, excluding Asian",AA degree,4998,19
+2018,27,Female,Divorced,"Multiple Race, including Black and White, excluding Asian",Grade 12 or less,2955,13
+2018,79,Male,Divorced,Alaskan Native or American Indian,Never attended/kindergarten only,4804,6
+2018,41,Female,Married,"Multiple Race, including Black, excluding Asian and White",Master's degree,3503,6
+2018,29,Female,Widowed,White,GED or equivalent,4117,10
+2018,41,Female,Married,Alaskan Native or American Indian,Never attended/kindergarten only,4924,23
+2018,48,Female,Divorced,White,AA degree,1982,15
+2018,23,Female,Never married,"Multiple Race, including Black, excluding Asian and White",AA degree,4165,0
+2021,45,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Grade 12 or less,4365,1
+2021,48,Male,Married,"Multiple Race, including White, excluding Asian and Black",AA degree,2813,11
+2018,40,Male,Separated,"Multiple Race, including White, excluding Asian and Black",Bachelor's,2605,17
+2021,77,Female,Separated,Alaskan Native or American Indian,Doctoral degree,3473,20
+2021,32,Male,Divorced,"	Multiple Race, including Asian, White, and Black",AA degree,4787,20
+2018,74,Male,Married,"Multiple Race, including Black and White, excluding Asian",Bachelor's,2083,23
+2018,46,Male,Widowed,White,Grade 12 or less,4953,16
+2021,48,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",AA degree,2890,20
+2021,61,Female,Married,"Multiple Race, including Black, excluding Asian and White",Master's degree,3962,9
+2021,79,Male,Divorced,"	Multiple Race, including Asian, White, and Black",GED or equivalent,3425,2
+2018,51,Male,Divorced,"Multiple Race, including Black and White, excluding Asian",Grade 12 or less,1950,2
+2021,76,Male,Divorced,White,Never attended/kindergarten only,4678,1
+2018,31,Female,Never married,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,2490,22
+2021,33,Male,Widowed,"Multiple Race, including White, excluding Asian and Black",Bachelor's,4037,17
+2018,52,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,3199,17
+2018,67,Male,Separated,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,4633,9
+2021,30,Female,Separated,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,2254,20
+2021,68,Female,Never married,"Multiple Race, including White, excluding Asian and Black",Master's degree,3426,3
+2018,40,Female,Never married,"Multiple Race, including Asian and White, excluding Black",Bachelor's,3554,0
+2018,46,Female,Separated,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,4568,18
+2018,79,Female,Married,"Multiple Race, including Black, excluding Asian and White",Grade 12 or less,3796,13
+2018,24,Female,Widowed,"Multiple Race, including White, excluding Asian and Black",Bachelor's,4690,12
+2018,39,Male,Married,Alaskan Native or American Indian,GED or equivalent,2249,18
+2021,72,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",GED or equivalent,4774,7
+2021,61,Male,Never married,"Multiple Race, including Asian and Black, excluding White",Master's degree,3953,22
+2021,36,Male,Separated,"Multiple Race, including White, excluding Asian and Black",AA degree,3876,14
+2018,27,Female,Divorced,"Multiple Race, including Black and White, excluding Asian",Master's degree,3196,20
+2018,22,Female,Never married,"Multiple Race, including Asian and White, excluding Black",AA degree,3338,15
+2021,80,Male,Never married,"Multiple Race, including Black and White, excluding Asian",Never attended/kindergarten only,2659,17
+2018,69,Female,Widowed,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,3017,1
+2018,41,Female,Never married,"	Multiple Race, including Asian, White, and Black",GED or equivalent,2994,16
+2021,69,Male,Separated,"Multiple Race, including Asian and Black, excluding White",Never attended/kindergarten only,1979,7
+2018,76,Male,Divorced,White,GED or equivalent,3558,24
+2018,78,Male,Separated,White,Bachelor's,2819,3
+2018,34,Female,Divorced,"Multiple Race, including Asian and White, excluding Black",Grade 12 or less,2297,3
+2018,48,Male,Never married,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,2932,6
+2018,75,Female,Never married,"Multiple Race, including White, excluding Asian and Black",Bachelor's,3158,9
+2018,55,Male,Divorced,"Multiple Race, including Black and White, excluding Asian",Never attended/kindergarten only,3095,16
+2021,46,Female,Separated,Black/African-American,AA degree,2156,7
+2018,43,Male,Married,"	Multiple Race, including Asian, White, and Black",AA degree,3882,4
+2021,42,Female,Widowed,"Multiple Race, including Black and White, excluding Asian",Grade 12 or less,4477,14
+2021,73,Female,Never married,"Multiple Race, including Black and White, excluding Asian",Master's degree,4076,4
+2021,28,Female,Separated,White,AA degree,4687,7
+2021,37,Female,Never married,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,2460,23
+2018,20,Female,Widowed,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,2055,8
+2021,60,Female,Never married,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,3694,3
+2021,30,Male,Married,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,3709,5
+2018,73,Male,Widowed,"Multiple Race, including Black and White, excluding Asian",Master's degree,3560,11
+2018,36,Male,Widowed,"	Multiple Race, including Asian, White, and Black",Doctoral degree,3874,17
+2021,55,Female,Divorced,"	Multiple Race, including Asian, White, and Black",Master's degree,4803,4
+2018,79,Female,Separated,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,4257,21
+2021,38,Female,Widowed,"Multiple Race, including Asian and Black, excluding White",Master's degree,2466,4
+2021,64,Female,Separated,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,1999,5
+2018,24,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Master's degree,3227,17
+2021,25,Male,Married,"	Multiple Race, including Asian, White, and Black",Master's degree,3047,6
+2018,76,Male,Separated,"Multiple Race, including Asian and White, excluding Black",Never attended/kindergarten only,2980,0
+2018,31,Female,Widowed,White,GED or equivalent,2171,23
+2018,77,Male,Married,Black/African-American,Bachelor's,4993,15
+2018,67,Male,Divorced,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,4892,12
+2018,24,Male,Married,"Multiple Race, including Asian and Black, excluding White",Bachelor's,1974,13
+2018,75,Female,Married,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,2272,16
+2018,37,Female,Separated,"Multiple Race, including Asian, excluding Black and White",GED or equivalent,4819,22
+2021,55,Female,Never married,White,Doctoral degree,2605,18
+2018,41,Female,Divorced,"Multiple Race, including Asian, excluding Black and White",Bachelor's,1949,9
+2021,51,Female,Widowed,"Multiple Race, including Asian and White, excluding Black",AA degree,4522,19
+2018,46,Female,Never married,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,3524,14
+2018,19,Female,Never married,"Multiple Race, including Black and White, excluding Asian",AA degree,4676,14
+2021,47,Male,Never married,"Multiple Race, including Asian, excluding Black and White",Master's degree,2947,14
+2021,51,Female,Married,"	Multiple Race, including Asian, White, and Black",Bachelor's,2267,17
+2021,35,Female,Divorced,"Multiple Race, including Black, excluding Asian and White",Bachelor's,3646,2
+2021,39,Male,Divorced,White,Never attended/kindergarten only,2531,0
+2021,43,Female,Widowed,Alaskan Native or American Indian,Grade 12 or less,2422,5
+2018,39,Female,Never married,"Multiple Race, including Black, excluding Asian and White",Master's degree,4358,6
+2018,55,Female,Never married,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,2379,23
+2018,35,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",Master's degree,1972,9
+2018,77,Female,Widowed,"Multiple Race, including Asian and Black, excluding White",Grade 12 or less,4871,11
+2018,37,Female,Never married,Black/African-American,Doctoral degree,1965,19
+2021,34,Female,Divorced,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,3273,24
+2021,50,Female,Widowed,Black/African-American,AA degree,3057,17
+2018,56,Male,Widowed,"Multiple Race, including Asian and Black, excluding White",Bachelor's,2558,21
+2021,58,Female,Married,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,3307,12
+2018,71,Female,Widowed,Black/African-American,Master's degree,3319,14
+2018,30,Male,Married,"Multiple Race, including Black and White, excluding Asian",AA degree,3636,1
+2018,62,Female,Never married,Alaskan Native or American Indian,Master's degree,2652,16
+2021,47,Male,Never married,"Multiple Race, including Asian and White, excluding Black",Never attended/kindergarten only,4519,20
+2021,50,Female,Married,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,4695,6
+2018,31,Female,Married,"Multiple Race, including Asian and White, excluding Black",GED or equivalent,4496,5
+2021,49,Female,Divorced,White,Bachelor's,3428,8
+2021,45,Female,Married,"Multiple Race, including White, excluding Asian and Black",Never attended/kindergarten only,4507,23
+2018,63,Female,Widowed,"	Multiple Race, including Asian, White, and Black",AA degree,3993,18
+2018,39,Female,Married,"Multiple Race, including Black, excluding Asian and White",Master's degree,4085,0
+2018,26,Male,Never married,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,2736,10
+2018,49,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",Bachelor's,3046,2
+2018,20,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,2838,18
+2021,28,Male,Married,"Multiple Race, including Asian and White, excluding Black",AA degree,2368,5
+2021,50,Female,Divorced,White,Never attended/kindergarten only,1999,6
+2021,74,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,4843,17
+2018,70,Female,Married,"Multiple Race, including Black and White, excluding Asian",Doctoral degree,2539,14
+2021,34,Male,Divorced,"Multiple Race, including Asian and Black, excluding White",Bachelor's,4893,8
+2021,71,Female,Divorced,"Multiple Race, including Asian, excluding Black and White",Master's degree,3218,7
+2018,62,Female,Never married,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,2680,9
+2018,20,Male,Never married,"Multiple Race, including Asian and Black, excluding White",Never attended/kindergarten only,4225,19
+2021,49,Female,Never married,Alaskan Native or American Indian,Doctoral degree,4566,23
+2018,78,Male,Married,"	Multiple Race, including Asian, White, and Black",Master's degree,4144,18
+2018,38,Male,Married,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,2697,12
+2021,75,Female,Married,"Multiple Race, including Black and White, excluding Asian",AA degree,1936,18
+2018,28,Female,Divorced,"Multiple Race, including Asian, excluding Black and White",Bachelor's,3406,18
+2018,55,Male,Never married,White,Bachelor's,2316,2
+2021,68,Female,Widowed,White,Master's degree,4809,14
+2018,70,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",Never attended/kindergarten only,2552,2
+2018,31,Male,Separated,"Multiple Race, including White, excluding Asian and Black",Master's degree,3049,23
+2018,39,Female,Divorced,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,3544,23
+2021,51,Male,Married,"Multiple Race, including Asian and Black, excluding White",Master's degree,2382,2
+2018,35,Female,Never married,"Multiple Race, including Black and White, excluding Asian",AA degree,4155,17
+2021,49,Male,Never married,Alaskan Native or American Indian,Doctoral degree,4650,1
+2021,22,Male,Divorced,Alaskan Native or American Indian,Doctoral degree,4127,23
+2018,45,Female,Divorced,"Multiple Race, including Asian and White, excluding Black",Never attended/kindergarten only,2563,5
+2021,45,Male,Married,"Multiple Race, including Asian and Black, excluding White",Bachelor's,3886,11
+2021,50,Male,Married,"Multiple Race, including Black, excluding Asian and White",Bachelor's,2890,13
+2021,46,Male,Separated,Alaskan Native or American Indian,Doctoral degree,3714,23
+2018,23,Male,Widowed,"	Multiple Race, including Asian, White, and Black",Bachelor's,2228,24
+2021,59,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,3953,18
+2018,39,Male,Separated,"Multiple Race, including Black, excluding Asian and White",AA degree,3208,6
+2018,58,Female,Widowed,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,4870,1
+2021,64,Female,Married,Alaskan Native or American Indian,AA degree,2333,17
+2018,27,Female,Separated,"	Multiple Race, including Asian, White, and Black",GED or equivalent,3319,2
+2021,70,Male,Never married,"Multiple Race, including Black, excluding Asian and White",Never attended/kindergarten only,4008,16
+2018,74,Male,Widowed,"Multiple Race, including Asian and Black, excluding White",Never attended/kindergarten only,4191,15
+2021,37,Male,Widowed,Alaskan Native or American Indian,Doctoral degree,3389,2
+2018,32,Male,Divorced,White,Master's degree,4317,19
+2018,70,Male,Divorced,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,4877,18
+2018,52,Male,Divorced,"Multiple Race, including Asian and White, excluding Black",Master's degree,4225,18
+2021,49,Female,Married,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,4771,2
+2018,78,Female,Divorced,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,1985,14
+2021,49,Male,Married,"Multiple Race, including Black, excluding Asian and White",AA degree,3314,18
+2021,57,Male,Married,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,1919,8
+2018,38,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Master's degree,2296,1
+2018,66,Male,Married,"Multiple Race, including Asian, excluding Black and White",Master's degree,3933,9
+2021,53,Male,Divorced,"Multiple Race, including Black, excluding Asian and White",Never attended/kindergarten only,2588,1
+2021,21,Male,Separated,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,2387,4
+2021,67,Male,Separated,"	Multiple Race, including Asian, White, and Black",Doctoral degree,2645,15
+2021,77,Male,Never married,"Multiple Race, including Asian and Black, excluding White",Master's degree,2692,10
+2021,78,Male,Divorced,"Multiple Race, including Asian and Black, excluding White",Master's degree,2202,4
+2018,56,Male,Separated,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,4177,10
+2018,64,Female,Separated,"Multiple Race, including Black and White, excluding Asian",Bachelor's,2774,16
+2018,34,Female,Separated,Black/African-American,Never attended/kindergarten only,3544,9
+2021,25,Female,Married,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,2116,10
+2018,70,Female,Married,"Multiple Race, including Black, excluding Asian and White",Master's degree,2692,16
+2018,56,Female,Never married,White,Never attended/kindergarten only,1985,24
+2018,70,Male,Married,"Multiple Race, including Black and White, excluding Asian",Master's degree,3501,19
+2021,58,Male,Never married,White,Never attended/kindergarten only,3689,4
+2021,54,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,4270,7
+2018,48,Male,Separated,White,Grade 12 or less,4207,8
+2018,71,Female,Married,"Multiple Race, including White, excluding Asian and Black",AA degree,4614,7
+2021,49,Female,Separated,Alaskan Native or American Indian,Grade 12 or less,4558,17
+2021,53,Male,Widowed,Alaskan Native or American Indian,Bachelor's,2920,12
+2021,73,Female,Separated,"Multiple Race, including Black and White, excluding Asian",Doctoral degree,3981,4
+2021,60,Male,Widowed,"Multiple Race, including Black, excluding Asian and White",Never attended/kindergarten only,4237,4
+2021,74,Male,Divorced,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,4661,9
+2021,19,Male,Married,"Multiple Race, including Asian, excluding Black and White",AA degree,3637,22
+2021,20,Female,Never married,White,Bachelor's,2140,24
+2018,40,Female,Widowed,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,4029,23
+2021,66,Male,Separated,"Multiple Race, including Asian and Black, excluding White",Bachelor's,2068,21
+2021,56,Male,Never married,Black/African-American,Doctoral degree,1968,24
+2021,76,Female,Divorced,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,3188,7
+2018,76,Female,Divorced,White,Master's degree,2827,14
+2021,71,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",Master's degree,2209,6
+2018,70,Female,Married,"Multiple Race, including Black, excluding Asian and White",AA degree,3755,19
+2021,44,Male,Separated,Alaskan Native or American Indian,Doctoral degree,2007,14
+2018,43,Female,Married,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,4137,0
+2018,65,Female,Married,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,2704,22
+2018,74,Male,Married,"Multiple Race, including Asian and White, excluding Black",GED or equivalent,4400,12
+2021,53,Male,Divorced,Black/African-American,Master's degree,2829,22
+2018,59,Male,Married,Alaskan Native or American Indian,Never attended/kindergarten only,4993,17
+2018,70,Male,Never married,"Multiple Race, including Black, excluding Asian and White",Master's degree,3020,15
+2021,29,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,4612,4
+2018,48,Female,Widowed,"Multiple Race, including Asian and Black, excluding White",Doctoral degree,4558,6
+2018,70,Female,Widowed,White,Grade 12 or less,4089,11
+2021,24,Female,Married,"Multiple Race, including White, excluding Asian and Black",AA degree,3061,9
+2021,55,Male,Married,"Multiple Race, including Asian, excluding Black and White",Master's degree,3914,6
+2018,25,Male,Married,"Multiple Race, including Asian and Black, excluding White",GED or equivalent,3656,5
+2021,72,Female,Never married,Alaskan Native or American Indian,Never attended/kindergarten only,3001,3
+2018,55,Male,Married,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,4161,5
+2021,53,Male,Separated,"	Multiple Race, including Asian, White, and Black",GED or equivalent,3474,13
+2018,58,Female,Never married,Black/African-American,Doctoral degree,3204,4
+2018,47,Male,Divorced,"	Multiple Race, including Asian, White, and Black",Bachelor's,3935,16
+2021,46,Male,Never married,Black/African-American,AA degree,3823,4
+2018,26,Male,Divorced,White,Doctoral degree,4741,7
+2021,66,Male,Divorced,Alaskan Native or American Indian,Grade 12 or less,2242,23
+2021,75,Female,Separated,"	Multiple Race, including Asian, White, and Black",GED or equivalent,4954,19
+2018,62,Female,Married,White,Grade 12 or less,2094,20
+2018,66,Male,Never married,"Multiple Race, including Asian, excluding Black and White",Bachelor's,2592,19
+2021,38,Male,Divorced,"	Multiple Race, including Asian, White, and Black",Master's degree,4580,16
+2021,52,Male,Divorced,White,Grade 12 or less,3594,10
+2021,79,Female,Widowed,"Multiple Race, including Black and White, excluding Asian",Bachelor's,2111,7
+2021,74,Male,Married,Alaskan Native or American Indian,Doctoral degree,2741,13
+2018,59,Female,Widowed,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,2329,17
+2021,67,Male,Divorced,Alaskan Native or American Indian,Never attended/kindergarten only,3727,4
+2021,44,Male,Never married,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,3009,4
+2018,75,Female,Widowed,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,4481,7
+2018,50,Female,Divorced,"Multiple Race, including Black, excluding Asian and White",AA degree,3199,24
+2018,70,Female,Married,"Multiple Race, including Asian, excluding Black and White",GED or equivalent,3521,7
+2021,23,Female,Married,"Multiple Race, including Asian, excluding Black and White",Doctoral degree,2020,17
+2018,69,Female,Divorced,"Multiple Race, including Asian and White, excluding Black",GED or equivalent,3923,9
+2018,35,Female,Married,"Multiple Race, including Asian and Black, excluding White",Grade 12 or less,4013,3
+2018,65,Male,Widowed,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,2702,11
+2018,63,Female,Never married,"Multiple Race, including White, excluding Asian and Black",Never attended/kindergarten only,3152,12
+2021,44,Female,Widowed,White,Bachelor's,4059,0
+2018,56,Male,Separated,White,Doctoral degree,3067,19
+2021,27,Male,Divorced,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,3242,18
+2021,37,Female,Separated,Black/African-American,Master's degree,4355,4
+2018,67,Female,Never married,Alaskan Native or American Indian,AA degree,3342,18
+2021,60,Male,Separated,"	Multiple Race, including Asian, White, and Black",AA degree,2557,11
+2021,49,Female,Divorced,Alaskan Native or American Indian,Master's degree,1913,1
+2018,43,Female,Separated,"Multiple Race, including Asian and White, excluding Black",Master's degree,2433,6
+2021,58,Male,Married,Alaskan Native or American Indian,Doctoral degree,3838,21
+2018,47,Male,Widowed,Alaskan Native or American Indian,Grade 12 or less,3906,12
+2018,39,Male,Divorced,Alaskan Native or American Indian,Master's degree,3672,22
+2018,41,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,2182,5
+2018,29,Male,Married,"	Multiple Race, including Asian, White, and Black",GED or equivalent,3742,0
+2018,45,Male,Never married,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,3177,10
+2018,54,Male,Widowed,Alaskan Native or American Indian,Bachelor's,4261,0
+2021,34,Female,Separated,"Multiple Race, including Asian and Black, excluding White",GED or equivalent,3876,23
+2021,37,Male,Widowed,"Multiple Race, including Black, excluding Asian and White",Grade 12 or less,3245,15
+2018,25,Female,Divorced,"	Multiple Race, including Asian, White, and Black",Master's degree,3203,5
+2018,61,Female,Widowed,White,Bachelor's,4463,11
+2018,37,Male,Never married,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,3290,13
+2018,61,Female,Never married,"Multiple Race, including Black and White, excluding Asian",Bachelor's,2702,24
+2021,33,Female,Never married,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,2832,24
+2021,70,Female,Separated,"Multiple Race, including Black and White, excluding Asian",Bachelor's,3250,10
+2018,65,Male,Separated,White,Never attended/kindergarten only,4030,7
+2018,19,Male,Never married,"	Multiple Race, including Asian, White, and Black",AA degree,4392,1
+2018,60,Male,Separated,"	Multiple Race, including Asian, White, and Black",Doctoral degree,3327,10
+2018,62,Male,Married,"Multiple Race, including Asian and White, excluding Black",GED or equivalent,4749,8
+2021,44,Male,Widowed,"Multiple Race, including Black and White, excluding Asian",Never attended/kindergarten only,4422,16
+2018,75,Male,Never married,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,3036,18
+2021,46,Male,Never married,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,1917,11
+2021,33,Female,Separated,"Multiple Race, including White, excluding Asian and Black",AA degree,3133,13
+2021,54,Female,Married,Black/African-American,AA degree,2568,12
+2021,80,Male,Never married,"Multiple Race, including Asian and Black, excluding White",Never attended/kindergarten only,4982,24
+2018,23,Female,Divorced,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,3495,7
+2018,66,Female,Widowed,Black/African-American,GED or equivalent,3969,22
+2021,54,Female,Widowed,"Multiple Race, including White, excluding Asian and Black",Bachelor's,4430,13
+2021,64,Female,Never married,White,AA degree,3114,24
+2018,67,Female,Separated,"Multiple Race, including Black and White, excluding Asian",Bachelor's,2890,6
+2021,76,Male,Married,"Multiple Race, including Asian, excluding Black and White",Doctoral degree,4471,0
+2021,20,Male,Widowed,"Multiple Race, including Black and White, excluding Asian",Bachelor's,3808,19
+2021,79,Female,Separated,White,Doctoral degree,3351,13
+2018,65,Male,Widowed,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,3076,21
+2018,53,Male,Never married,Black/African-American,Doctoral degree,4676,15
+2021,55,Female,Separated,"Multiple Race, including Asian, excluding Black and White",AA degree,4827,0
+2018,21,Female,Divorced,"Multiple Race, including Asian, excluding Black and White",Doctoral degree,2067,1
+2021,30,Female,Never married,"Multiple Race, including Asian, excluding Black and White",GED or equivalent,3172,17
+2021,56,Female,Separated,Alaskan Native or American Indian,AA degree,3348,1
+2018,55,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Never attended/kindergarten only,2946,12
+2018,53,Male,Divorced,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,4214,12
+2021,27,Male,Separated,"Multiple Race, including Black, excluding Asian and White",AA degree,3213,3
+2021,43,Female,Never married,White,Never attended/kindergarten only,4844,23
+2018,65,Male,Separated,Black/African-American,Grade 12 or less,2653,24
+2018,47,Female,Divorced,"Multiple Race, including Asian and Black, excluding White",Grade 12 or less,3646,8
+2018,43,Male,Divorced,White,Master's degree,3829,14
+2021,19,Male,Divorced,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,4655,22
+2018,71,Male,Separated,"Multiple Race, including Asian and Black, excluding White",Grade 12 or less,3685,1
+2018,45,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,3741,5
+2018,66,Female,Separated,"Multiple Race, including Black and White, excluding Asian",AA degree,3382,20
+2018,42,Female,Never married,"Multiple Race, including Asian and Black, excluding White",GED or equivalent,4365,6
+2018,19,Male,Separated,"Multiple Race, including Black, excluding Asian and White",Bachelor's,3860,11
+2021,32,Male,Divorced,"Multiple Race, including Asian and White, excluding Black",Bachelor's,3631,17
+2021,20,Male,Separated,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,4738,6
+2018,71,Male,Married,Black/African-American,Doctoral degree,1992,20
+2018,31,Male,Never married,"Multiple Race, including Asian, excluding Black and White",Bachelor's,3136,16
+2018,23,Female,Widowed,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,2546,18
+2021,55,Male,Divorced,"	Multiple Race, including Asian, White, and Black",AA degree,3710,10
+2021,76,Male,Never married,"Multiple Race, including Black and White, excluding Asian",Bachelor's,3922,8
+2018,37,Male,Widowed,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,4363,4
+2018,66,Female,Divorced,"Multiple Race, including Black and White, excluding Asian",AA degree,3647,20
+2018,63,Male,Separated,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,3275,15
+2021,28,Male,Separated,"Multiple Race, including White, excluding Asian and Black",Bachelor's,4559,16
+2018,56,Male,Married,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,4515,22
+2018,31,Male,Never married,"Multiple Race, including Black and White, excluding Asian",Master's degree,4463,21
+2021,74,Male,Divorced,White,Doctoral degree,3477,7
+2021,54,Male,Divorced,"Multiple Race, including Black and White, excluding Asian",Grade 12 or less,2241,0
+2018,75,Male,Never married,"Multiple Race, including Asian, excluding Black and White",GED or equivalent,4006,11
+2018,70,Female,Married,"Multiple Race, including Asian and White, excluding Black",Bachelor's,2777,13
+2018,67,Female,Divorced,Black/African-American,Grade 12 or less,2689,17
+2018,52,Male,Separated,"Multiple Race, including Black and White, excluding Asian",Bachelor's,4028,19
+2021,26,Female,Married,"Multiple Race, including White, excluding Asian and Black",Never attended/kindergarten only,4158,22
+2021,24,Female,Never married,"Multiple Race, including White, excluding Asian and Black",Never attended/kindergarten only,2482,18
+2018,63,Female,Widowed,Black/African-American,Bachelor's,3615,24
+2021,73,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",Doctoral degree,4708,12
+2018,24,Female,Widowed,Black/African-American,AA degree,3247,13
+2018,48,Female,Separated,"	Multiple Race, including Asian, White, and Black",Bachelor's,3214,21
+2018,70,Female,Married,"Multiple Race, including Asian and White, excluding Black",GED or equivalent,4766,12
+2021,35,Male,Widowed,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,4929,12
+2021,49,Female,Married,"Multiple Race, including Black, excluding Asian and White",AA degree,4418,17
+2021,49,Male,Divorced,Alaskan Native or American Indian,GED or equivalent,2281,24
+2021,27,Female,Married,"Multiple Race, including Asian, excluding Black and White",GED or equivalent,3743,10
+2021,48,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Master's degree,4883,3
+2021,71,Male,Divorced,"Multiple Race, including Asian and Black, excluding White",GED or equivalent,3852,14
+2021,34,Male,Widowed,"Multiple Race, including Asian and Black, excluding White",Master's degree,3124,18
+2018,32,Female,Never married,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,2182,13
+2018,75,Male,Separated,"Multiple Race, including Asian, excluding Black and White",Doctoral degree,3825,5
+2018,56,Female,Divorced,Alaskan Native or American Indian,Grade 12 or less,2161,1
+2018,50,Male,Separated,"Multiple Race, including Black, excluding Asian and White",Grade 12 or less,2660,18
+2021,51,Female,Never married,White,Grade 12 or less,1954,17
+2018,19,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",AA degree,2121,22
+2021,24,Male,Divorced,White,Master's degree,4971,23
+2018,39,Female,Married,Alaskan Native or American Indian,GED or equivalent,4637,23
+2021,20,Male,Separated,White,Grade 12 or less,3633,6
+2018,19,Female,Married,"Multiple Race, including Black and White, excluding Asian",AA degree,2242,3
+2021,56,Female,Separated,"Multiple Race, including Asian, excluding Black and White",Bachelor's,4566,8
+2018,79,Female,Married,"Multiple Race, including Black, excluding Asian and White",Master's degree,4436,3
+2021,78,Male,Divorced,"Multiple Race, including Asian and Black, excluding White",AA degree,1905,23
+2018,24,Female,Separated,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,4936,24
+2021,45,Female,Married,"Multiple Race, including Asian, excluding Black and White",Master's degree,4692,9
+2021,60,Female,Divorced,"Multiple Race, including Black and White, excluding Asian",Never attended/kindergarten only,2623,23
+2021,41,Male,Married,"Multiple Race, including Asian, excluding Black and White",AA degree,4572,2
+2018,64,Female,Separated,"Multiple Race, including Asian, excluding Black and White",Bachelor's,3536,23
+2021,46,Female,Never married,"Multiple Race, including Asian and White, excluding Black",Grade 12 or less,2366,6
+2021,20,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Bachelor's,2068,4
+2021,79,Male,Widowed,"Multiple Race, including Asian and Black, excluding White",Doctoral degree,4526,19
+2018,64,Male,Widowed,"	Multiple Race, including Asian, White, and Black",Doctoral degree,3196,22
+2018,27,Male,Separated,"Multiple Race, including Black and White, excluding Asian",AA degree,4940,9
+2018,38,Male,Separated,Alaskan Native or American Indian,Never attended/kindergarten only,4017,1
+2021,73,Male,Widowed,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,2622,4
+2018,31,Female,Divorced,White,AA degree,2712,16
+2018,38,Female,Widowed,White,Bachelor's,4031,1
+2021,35,Female,Married,"Multiple Race, including Asian, excluding Black and White",AA degree,2351,22
+2021,40,Male,Divorced,"	Multiple Race, including Asian, White, and Black",Master's degree,2234,12
+2018,32,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",Never attended/kindergarten only,3402,20
+2018,48,Male,Separated,White,Master's degree,1964,1
+2018,73,Male,Separated,"Multiple Race, including Asian and White, excluding Black",Bachelor's,2117,10
+2018,58,Female,Divorced,"	Multiple Race, including Asian, White, and Black",Master's degree,2966,12
+2021,49,Female,Widowed,Alaskan Native or American Indian,AA degree,2458,10
+2021,51,Male,Separated,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,2234,8
+2018,45,Male,Separated,White,Master's degree,3740,7
+2021,60,Male,Separated,"Multiple Race, including Asian and White, excluding Black",Never attended/kindergarten only,4604,17
+2018,61,Male,Separated,Black/African-American,Bachelor's,2778,8
+2018,60,Male,Separated,"Multiple Race, including Asian and Black, excluding White",Never attended/kindergarten only,3685,14
+2021,53,Male,Separated,"Multiple Race, including Black, excluding Asian and White",Grade 12 or less,1916,5
+2021,29,Female,Widowed,"Multiple Race, including Black and White, excluding Asian",Never attended/kindergarten only,3394,22
+2018,34,Female,Divorced,"Multiple Race, including Asian, excluding Black and White",GED or equivalent,3070,3
+2018,54,Male,Married,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,3633,20
+2021,33,Male,Widowed,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,4689,16
+2018,33,Male,Married,"Multiple Race, including Asian and White, excluding Black",Bachelor's,4336,2
+2018,79,Male,Widowed,Black/African-American,Master's degree,2950,20
+2018,45,Female,Separated,Black/African-American,Doctoral degree,4722,17
+2018,32,Female,Separated,"Multiple Race, including White, excluding Asian and Black",Grade 12 or less,2008,18
+2021,46,Female,Widowed,"Multiple Race, including Asian and White, excluding Black",Grade 12 or less,4155,10
+2021,40,Female,Widowed,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,2341,24
+2021,66,Female,Divorced,White,Bachelor's,3331,15
+2018,22,Female,Divorced,"Multiple Race, including White, excluding Asian and Black",Bachelor's,4223,11
+2018,47,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",AA degree,3292,19
+2018,54,Female,Widowed,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,3786,23
+2021,54,Female,Divorced,"Multiple Race, including Black, excluding Asian and White",Master's degree,2602,1
+2018,80,Female,Never married,"Multiple Race, including Asian, excluding Black and White",Master's degree,3203,5
+2021,34,Male,Separated,Alaskan Native or American Indian,AA degree,2042,15
+2018,73,Female,Married,"Multiple Race, including Black, excluding Asian and White",Master's degree,3382,18
+2018,44,Female,Separated,Black/African-American,Never attended/kindergarten only,4075,19
+2018,41,Male,Widowed,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,3181,3
+2018,62,Male,Never married,Black/African-American,AA degree,2928,12
+2021,32,Female,Divorced,"Multiple Race, including Asian and Black, excluding White",Bachelor's,4054,3
+2018,49,Female,Married,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,3032,7
+2018,48,Female,Widowed,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,4013,11
+2018,38,Male,Separated,White,AA degree,3354,22
+2021,80,Female,Widowed,"Multiple Race, including Black and White, excluding Asian",AA degree,3586,3
+2018,76,Female,Never married,"Multiple Race, including Asian and Black, excluding White",AA degree,3459,22
+2018,60,Female,Widowed,"Multiple Race, including Asian, excluding Black and White",Bachelor's,4494,6
+2018,66,Female,Divorced,White,Bachelor's,4473,3
+2018,50,Male,Never married,Alaskan Native or American Indian,GED or equivalent,3198,14
+2021,38,Female,Married,"Multiple Race, including Asian, excluding Black and White",GED or equivalent,1957,24
+2018,70,Female,Widowed,"Multiple Race, including Black and White, excluding Asian",Bachelor's,3242,15
+2018,54,Male,Widowed,"Multiple Race, including Black and White, excluding Asian",Doctoral degree,4381,18
+2021,29,Male,Married,"Multiple Race, including Black and White, excluding Asian",Master's degree,4089,10
+2018,25,Female,Separated,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,4540,18
+2018,22,Female,Separated,"Multiple Race, including Asian, excluding Black and White",Bachelor's,2356,22
+2021,63,Female,Divorced,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,3808,1
+2018,72,Male,Never married,"Multiple Race, including White, excluding Asian and Black",Bachelor's,4548,16
+2021,67,Male,Married,Black/African-American,Never attended/kindergarten only,2138,4
+2021,22,Male,Separated,Alaskan Native or American Indian,Never attended/kindergarten only,2944,8
+2021,53,Female,Divorced,"	Multiple Race, including Asian, White, and Black",Master's degree,3606,2
+2018,60,Female,Never married,"Multiple Race, including White, excluding Asian and Black",Never attended/kindergarten only,2002,3
+2018,26,Female,Never married,"	Multiple Race, including Asian, White, and Black",Master's degree,4654,14
+2021,51,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,1936,7
+2021,24,Male,Never married,Alaskan Native or American Indian,AA degree,3094,0
+2021,69,Female,Separated,"Multiple Race, including Asian and Black, excluding White",GED or equivalent,3058,2
+2021,50,Male,Widowed,"	Multiple Race, including Asian, White, and Black",Grade 12 or less,3855,24
+2018,76,Female,Widowed,Black/African-American,AA degree,2007,14
+2018,67,Female,Widowed,"Multiple Race, including Black and White, excluding Asian",Bachelor's,4027,2
+2018,19,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,3604,10
+2021,70,Male,Married,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,2579,9
+2018,58,Male,Widowed,Black/African-American,Master's degree,3214,12
+2018,79,Female,Widowed,"Multiple Race, including Asian, excluding Black and White",Grade 12 or less,4308,21
+2018,56,Female,Married,"Multiple Race, including Asian and Black, excluding White",Master's degree,3493,3
+2021,38,Male,Never married,White,Doctoral degree,2279,13
+2018,66,Female,Widowed,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,3854,6
+2021,51,Male,Separated,"Multiple Race, including Black and White, excluding Asian",Never attended/kindergarten only,2165,10
+2018,73,Male,Never married,White,Never attended/kindergarten only,3698,21
+2018,71,Male,Married,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,3378,9
+2021,70,Female,Never married,"Multiple Race, including White, excluding Asian and Black",GED or equivalent,1978,7
+2021,33,Female,Married,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,3547,23
+2021,24,Male,Widowed,"Multiple Race, including Asian, excluding Black and White",Never attended/kindergarten only,2494,1
+2018,57,Male,Divorced,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,2837,24
+2018,76,Female,Widowed,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,4994,0
+2018,44,Female,Never married,"Multiple Race, including Asian, excluding Black and White",Master's degree,2854,10
+2021,29,Male,Married,"Multiple Race, including Asian and White, excluding Black",AA degree,3088,10
+2018,52,Female,Never married,White,AA degree,3855,5
+2021,54,Female,Married,Alaskan Native or American Indian,GED or equivalent,3415,24
+2018,43,Female,Never married,"Multiple Race, including White, excluding Asian and Black",Doctoral degree,4856,5
+2018,56,Female,Never married,"Multiple Race, including Black and White, excluding Asian",Never attended/kindergarten only,3080,1
+2021,40,Male,Married,"Multiple Race, including Asian and Black, excluding White",AA degree,2601,1
+2018,43,Female,Never married,"Multiple Race, including Black and White, excluding Asian",AA degree,4842,22
+2021,38,Male,Married,"Multiple Race, including Black and White, excluding Asian",Master's degree,4191,7
+2018,56,Female,Separated,"Multiple Race, including Asian and Black, excluding White",Grade 12 or less,3674,23
+2021,75,Male,Married,"Multiple Race, including Black, excluding Asian and White",Bachelor's,4294,19
+2021,54,Male,Never married,"Multiple Race, including Asian and Black, excluding White",Master's degree,4105,12
+2021,21,Male,Widowed,"Multiple Race, including Black, excluding Asian and White",GED or equivalent,2638,15
+2018,55,Female,Separated,"Multiple Race, including Asian and White, excluding Black",Bachelor's,2450,3
+2018,75,Male,Married,"Multiple Race, including Asian and Black, excluding White",AA degree,3459,11
+2018,25,Male,Widowed,"	Multiple Race, including Asian, White, and Black",Doctoral degree,4720,14
+2021,23,Female,Never married,"Multiple Race, including Black, excluding Asian and White",AA degree,2114,5
+2021,20,Male,Divorced,"Multiple Race, including Asian and White, excluding Black",AA degree,2311,2
+2021,48,Female,Never married,"Multiple Race, including Asian and White, excluding Black",Grade 12 or less,3190,13
+2018,19,Male,Divorced,"Multiple Race, including Asian and Black, excluding White",GED or equivalent,3168,1
+2018,20,Female,Widowed,"	Multiple Race, including Asian, White, and Black",Never attended/kindergarten only,4371,3
+2021,31,Male,Separated,White,GED or equivalent,2936,6
+2018,29,Male,Married,Alaskan Native or American Indian,Master's degree,3936,2
+2021,52,Female,Widowed,White,Grade 12 or less,4734,20
+2018,67,Female,Separated,"Multiple Race, including Black and White, excluding Asian",Bachelor's,3314,4
+2018,63,Female,Married,Black/African-American,GED or equivalent,4663,21
+2018,42,Female,Divorced,Black/African-American,Master's degree,4595,6
+2021,21,Female,Separated,"Multiple Race, including Asian and White, excluding Black",AA degree,4462,0
+2021,67,Male,Widowed,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,2272,20
+2018,49,Male,Widowed,"Multiple Race, including Asian and White, excluding Black",Never attended/kindergarten only,2701,17
+2021,34,Female,Widowed,"Multiple Race, including Black and White, excluding Asian",GED or equivalent,4482,3
+2021,64,Female,Divorced,"Multiple Race, including Black, excluding Asian and White",AA degree,2359,12
+2018,44,Male,Never married,"Multiple Race, including Asian and White, excluding Black",Doctoral degree,3621,2
+2021,74,Female,Never married,"Multiple Race, including Black, excluding Asian and White",Grade 12 or less,3146,7
+2018,29,Male,Divorced,"Multiple Race, including Asian and White, excluding Black",AA degree,4955,7

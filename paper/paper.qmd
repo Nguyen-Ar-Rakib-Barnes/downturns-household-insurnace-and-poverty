@@ -7,7 +7,7 @@ author:
 thanks: "Code and data are available at: [https://github.com/Nguyen-Ar-Rakib-Barnes/downturns-household-insurance-and-poverty](https://github.com/Nguyen-Ar-Rakib-Barnes/downturns-household-insurance-and-poverty)."
 date: today
 date-format: long
-abstract: "Mental health poses a significant global health threat. This threat existed before the pandemic, and recent studies have shown that it has become even more prevalent after the pandemic. Our study developed a noble method to identify severe psychological depression using survey data that can be used as an early alert system to identify nonspecific psychological distress."
+abstract: "Mental health poses a significant global health threat. This threat existed before the pandemic, and recent studies have shown that it has become even more prevalent after the pandemic. Our study developed a method to identify severe psychological depression using survey data that can be used as an early alert system to identify nonspecific psychological distress."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -18,220 +18,19 @@ bibliography: references.bib
 #| warning: false
 #| message: false
 
-library(boot)
-library(broom.mixed)
-library(collapse)
-library(dataverse)
-library(gutenbergr)
-library(janitor)
-library(knitr)
-library(marginaleffects)
 library(modelsummary)
 library(rstanarm)
-library(tidybayes)
 library(tidyverse)
 library(here)
-library(ggplot2)
-filtered_df_2018 <- read.csv(here::here("data/02-analysis_data/model_data_2018.csv"))
-filtered_df_2021 <- read.csv(here::here("data/02-analysis_data/model_data_2021.csv"))
+library(arrow)
+library(knitr)
 
-labeled_df_reduced_2018 <- filtered_df_2018 |> mutate(
-  outcome = if_else(outcome==1, "Yes", "No"),
-  outcome = as_factor(outcome),
-  sex = if_else(sex==1,"Male", "Female"),
-  sex = as_factor(sex),
-  marital_status = case_when(
-    marstat==10~"Married",
-    marstat==20~"Widowed",
-    marstat==30~"Divorced",
-    marstat==40~"Separated",
-    marstat==50~"Never married"
-  ),
-  marital_status = factor(marital_status, levels=c("Married","Widowed","Divorced","Separated","Never married")),
-  race= case_when(
-    racea==100~"White",
-    racea==200~"Black/African-American",
-    racea==300~"Aleut, Alaskan Native, or American Indian",
-    racea==310~"Alaskan Native or American Indian",
-    racea==320~"Alaskan Native/Eskimo",
-    racea==330~"Aleut",
-    racea==340~"American Indian",
-    racea==350~"American Indian or Alaskan Native and any other group",
-    racea==400~"Asian or Pacific Islander",
-    racea==410~"Asian",
-    racea==411~"Chinese",
-    racea==412~"Filipino",
-    racea==413~"Korean",
-    racea==414~"Vietnamese",
-    racea==415~"Japanese",
-    racea==416~"Asian Indian",
-    racea==420~"Pacific Islander",
-    racea==421~"Hawaiian",
-    racea==422~"Samoan",
-    racea==423~"Guamanian",
-    racea==430~"Other Asian or Pacific Islander",
-    racea==431~"Other Asian or Pacific Islander (1992-1995)",
-    racea==432~"Other Asian or Pacific Islander (1996)",
-    racea==433~"Other Asian or Pacific Islander (1997-1998)",
-    racea==434~"Other Asian (1999 forward)",
-    racea==500~"Other Race",
-    racea==510~"Other Race (1963-1977)",
-    racea==520~"Other Race (1978)",
-    racea==530~"Other Race (1979-1991)",
-    racea==540~"Other Race (1992-1995)",
-    racea==550~"Other Race (1996)",
-    racea==560~"Other Race (1997-1998)",
-    racea==570~"Other Race (1999-2002)",
-    racea==580~"Primary Race not releasable",
-    racea==600~"Multiple Race, No Primary Race Selected",
-    racea==610~"Multiple Race, including Asian, excluding Black and White",
-    racea==611~"Multiple Race, including Asian and Black, excluding White",
-    racea==612~"Multiple Race, including Asian and White, excluding Black",
-    racea==613~"Multiple Race, including Black, excluding Asian and White",
-    racea==614~"Multiple Race, including Black and White, excluding Asian",
-    racea==615~"Multiple Race, including White, excluding Asian and Black",
-    racea==616~"Multiple Race, including Asian, White, and Black",
-    racea==617~"Multiple Race, excluding Asian, White, and Black"
-  ),
-  race = factor(race, 
-                levels=c("White", "Black/African-American", "Aleut, Alaskan Native, or American Indian", "Alaskan Native or American Indian", "Alaskan Native/Eskimo", "Aleut", "American Indian", "American Indian or Alaskan Native and any other group", "Asian or Pacific Islander", "Asian", "Chinese", "Filipino", "Korean", "Vietnamese", "Japanese", "Asian Indian", "Pacific Islander", "Hawaiian", "Samoan", "Guamanian", "Other Asian or Pacific Islander", "Other Asian or Pacific Islander (1992-1995)", "Other Asian or Pacific Islander (1996)", "Other Asian or Pacific Islander (1997-1998)", "Other Asian (1999 forward)", "Other Race", "Other Race (1963-1977)", "Other Race (1978)", "Other Race (1979-1991)", "Other Race (1992-1995)", "Other Race (1996)", "Other Race (1997-1998)", "Other Race (1999-2002)", "Primary Race not releasable", "Multiple Race, No Primary Race Selected", "Multiple Race, including Asian, excluding Black and White", "Multiple Race, including Asian and Black, excluding White", "Multiple Race, including Asian and White, excluding Black", "Multiple Race, including Black, excluding Asian and White", "Multiple Race, including Black and White, excluding Asian", "Multiple Race, including White, excluding Asian and Black", "Multiple Race, including Asian, White, and Black", "Multiple Race, excluding Asian, White, and Black"
-                )),
-  education = case_when(
-    educ==100~"Grade 12 or less",
-    educ==101~"Grade 12 or less",
-    educ==102~"Never attended/kindergarten only",
-    educ==103~"Grade 12 or less",
-    educ==104~"Grade 12 or less",
-    educ==105~"Grade 12 or less",
-    educ==106~"Grade 12 or less",
-    educ==107~"Grade 12 or less",
-    educ==108~"Grade 12 or less",
-    educ==109~"Grade 12 or less",
-    educ==110~"Grade 12 or less",
-    educ==111~"Grade 12 or less",
-    educ==112~"Grade 12 or less",
-    educ==113~"Grade 12 or less",
-    educ==114~"Grade 12 or less",
-    educ==115~"Grade 12 or less",
-    educ==116~"Grade 12 or less",
-    educ==200~"High school",
-    educ==201~"High school",
-    educ==202~"GED or equivalent",
-    educ==300~"Some college",
-    educ==301~"Some college",
-    educ==302~"AA degree",
-    educ==303~"AA degree",
-    educ==400~"Bachelor's",
-    educ==501~"Master's",
-    educ==502~"Professional",
-    educ==503~"Doctoral"
-  ),
-  education = factor(
-    education,
-    levels=c(
-      "Grade 12 or less","Never attended/kindergarten only","High school","GED or equivalent","Some college","AA degree","Bachelor's","Master's","Professional","Doctoral"
-    )
-  )
-)
+filtered_df_2018 <- read_parquet(here::here("data/02-analysis_data/model_data_2018.parquet"))
+filtered_df_2021 <- read_parquet(here::here("data/02-analysis_data/model_data_2021.parquet"))
 
-labeled_df_reduced_2021 <- filtered_df_2021 |> mutate(
-  outcome = if_else(outcome==1, "Yes", "No"),
-  outcome = as_factor(outcome),
-  sex = if_else(sex==1,"Male", "Female"),
-  sex = as_factor(sex),
-  marital_status = case_when(
-    marstat==10~"Married",
-    marstat==20~"Widowed",
-    marstat==30~"Divorced",
-    marstat==40~"Separated",
-    marstat==50~"Never married"
-  ),
-  marital_status = factor(marital_status, levels=c("Married","Widowed","Divorced","Separated","Never married")),
-  race= case_when(
-    racea==100~"White",
-    racea==200~"Black/African-American",
-    racea==300~"Aleut, Alaskan Native, or American Indian",
-    racea==310~"Alaskan Native or American Indian",
-    racea==320~"Alaskan Native/Eskimo",
-    racea==330~"Aleut",
-    racea==340~"American Indian",
-    racea==350~"American Indian or Alaskan Native and any other group",
-    racea==400~"Asian or Pacific Islander",
-    racea==410~"Asian",
-    racea==411~"Chinese",
-    racea==412~"Filipino",
-    racea==413~"Korean",
-    racea==414~"Vietnamese",
-    racea==415~"Japanese",
-    racea==416~"Asian Indian",
-    racea==420~"Pacific Islander",
-    racea==421~"Hawaiian",
-    racea==422~"Samoan",
-    racea==423~"Guamanian",
-    racea==430~"Other Asian or Pacific Islander",
-    racea==431~"Other Asian or Pacific Islander (1992-1995)",
-    racea==432~"Other Asian or Pacific Islander (1996)",
-    racea==433~"Other Asian or Pacific Islander (1997-1998)",
-    racea==434~"Other Asian (1999 forward)",
-    racea==500~"Other Race",
-    racea==510~"Other Race (1963-1977)",
-    racea==520~"Other Race (1978)",
-    racea==530~"Other Race (1979-1991)",
-    racea==540~"Other Race (1992-1995)",
-    racea==550~"Other Race (1996)",
-    racea==560~"Other Race (1997-1998)",
-    racea==570~"Other Race (1999-2002)",
-    racea==580~"Primary Race not releasable",
-    racea==600~"Multiple Race, No Primary Race Selected",
-    racea==610~"Multiple Race, including Asian, excluding Black and White",
-    racea==611~"Multiple Race, including Asian and Black, excluding White",
-    racea==612~"Multiple Race, including Asian and White, excluding Black",
-    racea==613~"Multiple Race, including Black, excluding Asian and White",
-    racea==614~"Multiple Race, including Black and White, excluding Asian",
-    racea==615~"Multiple Race, including White, excluding Asian and Black",
-    racea==616~"Multiple Race, including Asian, White, and Black",
-    racea==617~"Multiple Race, excluding Asian, White, and Black"
-  ),
-  race = factor(race, 
-                levels=c("White", "Black/African-American", "Aleut, Alaskan Native, or American Indian", "Alaskan Native or American Indian", "Alaskan Native/Eskimo", "Aleut", "American Indian", "American Indian or Alaskan Native and any other group", "Asian or Pacific Islander", "Asian", "Chinese", "Filipino", "Korean", "Vietnamese", "Japanese", "Asian Indian", "Pacific Islander", "Hawaiian", "Samoan", "Guamanian", "Other Asian or Pacific Islander", "Other Asian or Pacific Islander (1992-1995)", "Other Asian or Pacific Islander (1996)", "Other Asian or Pacific Islander (1997-1998)", "Other Asian (1999 forward)", "Other Race", "Other Race (1963-1977)", "Other Race (1978)", "Other Race (1979-1991)", "Other Race (1992-1995)", "Other Race (1996)", "Other Race (1997-1998)", "Other Race (1999-2002)", "Primary Race not releasable", "Multiple Race, No Primary Race Selected", "Multiple Race, including Asian, excluding Black and White", "Multiple Race, including Asian and Black, excluding White", "Multiple Race, including Asian and White, excluding Black", "Multiple Race, including Black, excluding Asian and White", "Multiple Race, including Black and White, excluding Asian", "Multiple Race, including White, excluding Asian and Black", "Multiple Race, including Asian, White, and Black", "Multiple Race, excluding Asian, White, and Black"
-                )),
-  education = case_when(
-    educ==100~"Grade 12 or less",
-    educ==101~"Grade 12 or less",
-    educ==102~"Never attended/kindergarten only",
-    educ==103~"Grade 12 or less",
-    educ==104~"Grade 12 or less",
-    educ==105~"Grade 12 or less",
-    educ==106~"Grade 12 or less",
-    educ==107~"Grade 12 or less",
-    educ==108~"Grade 12 or less",
-    educ==109~"Grade 12 or less",
-    educ==110~"Grade 12 or less",
-    educ==111~"Grade 12 or less",
-    educ==112~"Grade 12 or less",
-    educ==113~"Grade 12 or less",
-    educ==114~"Grade 12 or less",
-    educ==115~"Grade 12 or less",
-    educ==116~"Grade 12 or less",
-    educ==200~"High school",
-    educ==201~"High school",
-    educ==202~"GED or equivalent",
-    educ==300~"Some college",
-    educ==301~"Some college",
-    educ==302~"AA degree",
-    educ==303~"AA degree",
-    educ==400~"Bachelor's",
-    educ==501~"Master's",
-    educ==502~"Professional",
-    educ==503~"Doctoral"
-  ),
-  education = factor(
-    education,
-    levels=c(
-      "Grade 12 or less","Never attended/kindergarten only","High school","GED or equivalent","Some college","AA degree","Bachelor's","Master's","Professional","Doctoral"
-    )
-  )
-)
+labeled_df_reduced_2018 <- filtered_df_2018
+
+labeled_df_reduced_2021 <- filtered_df_2021
 ```
 
 # Introduction
@@ -251,7 +50,7 @@ The remainder of this paper is structured as follows: @sec-data presents the dat
 ## Overview
 We used the Medical Expenditure Panel Survey(MEPS) dataset from the Integrated Public Use Microdata Series, which contains microdata from different time points related to U.S. healthcare expenditures [@blewett_ipums_2023]. We performed all analysis using a popular statistical language called R [@citeR]. Our dataset contains age, sex, marital status, race, highest level of education attainment, total personal income, and K6 score [@kessler_kessler_2012].All the variable definitions can be found in the Appendix [-@sec-appendix-data-details].
 
-Our goal was to identify respondents, based on gender and education, who were suffering from non-specific psychological distress based on the Kessler scale before and after the COVID-19 pandemic. To support our analyses, we split into two datasets for 2018 and 2021. We also excluded the respondents whose ages are below 19 and over 80. After enforcing our inclusion criteria, we had 15716 respondents for 2018 and 12685 for 2021. To give a preview of our data, @tbl-2018 and @tbl-2021 show the first five rows for each row for 2018 and 2021, respectively.
+Our goal was to identify respondents, based on gender and education, who were suffering from non-specific psychological distress based on the Kessler scale before and after the COVID-19 pandemic. To support our analyses, we split into two datasets for 2018 and 2021. We excluded the respondents whose ages are below 19 and over 80. After enforcing our inclusion criteria, we had 14146 respondents for 2018 and 11383 for 2021. To give a preview of our data, @tbl-2018 and @tbl-2021 show the first five rows for each row for 2018 and 2021, respectively.
 ```{r}
 #| label: fig-education-number-rows
 #| fig-cap: Education
@@ -295,7 +94,7 @@ Despite the protective nature of education, the gender gap in mental health pers
 
 ## Outcome variables
 
-The MEPS survey collects participants' K6 score for nonspecific psychological distress. The K6 score is a summed scale value, also known as the Kessler 6 Scale, which considers six manifestations of nonspecific psychological distress. A score of 13 or higher indicates likely severe mental illness [@kessler_kessler_2012]. The variable called K6SUM represents the score in our dataset [-@sec-appendix-data-details]. We constructed a new variable called "outcome," where 0 represents the score below 13 and 1 represents the score above 13. We considered zero as a person who is not experiencing psychological distress, denoted as "No," and one as a person experiencing severe psychological distress, denoted as "Yes." @fig-respondent-outcome represents the number of respondents we have in the dataset who were suffering from psychological distress. In 2018, 601 respondents were suffering severe psychological distress, where the number of total respondents was 15716. In 2021, 573 respondents were suffering from nonspecific psychological distress over the 30-day recall period, where the total number of respondents was 12685.
+The MEPS survey collects participants' K6 score for nonspecific psychological distress. The K6 score is a summed scale value, also known as the Kessler 6 Scale, which considers six manifestations of nonspecific psychological distress. A score of 13 or higher indicates likely severe mental illness [@kessler_kessler_2012]. The variable called k6sum represents the score in our dataset [-@sec-appendix-data-details]. We constructed a new variable called "outcome," where 0 represents the score below 13 and 1 represents the score above 13. We considered zero as a person who is not experiencing psychological distress, denoted as "No," and one as a person experiencing severe psychological distress, denoted as "Yes." @fig-respondent-outcome represents the number of respondents we have in the dataset who were suffering from psychological distress. In 2018, 544 respondents were suffering severe psychological distress, where the number of total respondents was 14146. In 2021, 513 respondents were suffering from nonspecific psychological distress over the 30-day recall period, where the total number of respondents was 11383.
 
 ```{r}
 #| label: fig-respondent-outcome
@@ -315,18 +114,18 @@ labeled_df_reduced_2018 |>
     stat = "count", 
     color = "black",
     aes(label = after_stat(count)), 
-    vjust = -0.6,  # Adjust vertical position of labels
-    size = 5       # Adjust size of labels
+    vjust = -0.6,   
+    size = 5        
   ) +
   labs(title = "", 
        x = "Outcome", 
        y = "Frequency") +
   theme_light()+
   theme(
-    plot.title = element_text(size = 20, face = "bold"),  # Title font size
-    axis.title.x = element_text(size = 16),               # X-axis label size
-    axis.title.y = element_text(size = 16),               # Y-axis label size
-    axis.text = element_text(size = 14)                   # Axis text size (ticks)
+    plot.title = element_text(size = 20, face = "bold"),   
+    axis.title.x = element_text(size = 16),                
+    axis.title.y = element_text(size = 16),                
+    axis.text = element_text(size = 14)                    
   )
 
 max_count <- max(table(labeled_df_reduced_2021$outcome)) + 1000
@@ -338,18 +137,18 @@ labeled_df_reduced_2021 |>
     stat = "count", 
     color = "black",
     aes(label = after_stat(count)), 
-    vjust = -0.3,  # Adjust vertical position of labels
-    size = 5       # Adjust size of labels
+    vjust = -0.3, 
+    size = 5      
   ) +
   labs(title = "", 
        x = "Outcome", 
        y = "Frequency") +
   theme_light()+
   theme(
-    plot.title = element_text(size = 20, face = "bold"),  # Title font size
-    axis.title.x = element_text(size = 16),               # X-axis label size
-    axis.title.y = element_text(size = 16),               # Y-axis label size
-    axis.text = element_text(size = 14)                   # Axis text size (ticks)
+    plot.title = element_text(size = 20, face = "bold"),  
+    axis.title.x = element_text(size = 16),               
+    axis.title.y = element_text(size = 16),               
+    axis.text = element_text(size = 14)                   
   )
 ```
 
@@ -361,62 +160,46 @@ We discuss the predictor variables in this section. We primarily use sex and edu
 
 ### Sex
 
-Our dataset has 8209 female respondents and 7507 male respondents for 2018. In 2021, the total number of respondents is lower compared to 2018. We have 6784 female respondents and 5901 male respondents for 2021 [@fig-sex].
+Our dataset has 7312 female respondents and 6834 male respondents for 2018. In 2021, the total number of respondents is lower compared to 2018. We have 6015 female respondents and 5368 male respondents for 2021 [@fig-sex].
 
 
 ```{r}
 #| label: fig-sex
-#| fig-cap: Distribution of Respondents by Sex
-#| fig-subcap: 
-#|  - "2018"
-#|  - "2021"
-#| layout-ncol: 2
+#| fig-cap: Distribution of Respondents by Sex (2018 and 2021)
+#| layout-ncol: 1
 #| echo: false
 #| warning: false
+# Join dataframe by sex
+count_2018 <- labeled_df_reduced_2018 %>%
+  group_by(sex) %>%
+  summarise(Count = n()) %>%
+  mutate(Year = "2018")  
 
-max_count <- max(table(labeled_df_reduced_2018$sex)) + 1000
-labeled_df_reduced_2018 |> 
-  ggplot(aes(x = sex)) +
-  geom_histogram(stat = "count", fill = "#013065", color = "white") +
-  scale_y_continuous(limits = c(0, max_count)) +
-  geom_text(
-    stat = "count", 
-    color = "black",
-    aes(label = after_stat(count)), 
-    vjust = -0.3,  # Adjust vertical position of labels
-    size = 5       # Adjust size of labels
+# Count gender distribution for 2021
+count_2021 <- labeled_df_reduced_2021 %>%
+  group_by(sex) %>%
+  summarise(Count = n()) %>%
+  mutate(Year = "2021")  
+
+combined <- bind_rows(count_2018, count_2021)
+max_count <-  max(combined$Count) + 1000
+ggplot(combined, aes(x = sex, y = Count, fill = Year)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.6) +
+  scale_y_continuous(limits=c(0,max_count)) + 
+    geom_text(aes(label = Count), 
+            position = position_dodge(width = 0.6),
+            vjust = -0.3,
+            size = 5) +
+  labs(
+    title = "Gender Distribution: 2018 vs 2021",
+    x = "Gender",
+    y = "Count"
   ) +
-  labs(title = "Sex", 
-       x = "Sex", 
-       y = "Frequency") +
-  theme_light()+
+  theme_light() +
   theme(
-    plot.title = element_text(size = 20, face = "bold"),  # Title font size
-    axis.title.x = element_text(size = 16),               # X-axis label size
-    axis.title.y = element_text(size = 16),               # Y-axis label size
-    axis.text = element_text(size = 14)                   # Axis text size (ticks)
-  )
-max_count <- max(table(labeled_df_reduced_2021$sex)) + 1000
-labeled_df_reduced_2021 |> 
-  ggplot(aes(x = sex)) +
-  geom_histogram(stat = "count", fill = "#013065", color = "white") +
-  scale_y_continuous(limits = c(0, max_count)) +
-  geom_text(
-    stat = "count", 
-    color = "black",
-    aes(label = after_stat(count)), 
-    vjust = -0.3,  # Adjust vertical position of labels
-    size = 5       # Adjust size of labels
-  ) +
-  labs(title = "Sex", 
-       x = "Sex", 
-       y = "Frequency") +
-  theme_light()+
-  theme(
-    plot.title = element_text(size = 20, face = "bold"),  # Title font size
-    axis.title.x = element_text(size = 16),               # X-axis label size
-    axis.title.y = element_text(size = 16),               # Y-axis label size
-    axis.text = element_text(size = 14)                   # Axis text size (ticks)
+    plot.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 16)
   )
 ```
 
@@ -424,14 +207,25 @@ labeled_df_reduced_2021 |>
 
 There are 36 categories in the education variable. Five of them represent the missing value or refused to answer. We discarded these values. We also discarded the 500, 504, and 505 codes as they represent overlap (e.g., 500 represents a Master's, Professional, or Doctoral Degree). We also merge the categories of education. Details are available in the @sec-appendix-education-recoding. 
 
-@fig-education-2018 and @fig-education-2021 depict the overall education status of our respondents. For both 2018 and 2022, a majority of respondents have at least a high school degree, followed by a bachelor's degree.
+@fig-education-2018 and @fig-education-2021 depict the overall education status of our respondents. For both 2018 and 2022, a majority of respondents have at least a bachelor's, master's or PhD degree, followed by high school degree.
 ```{r}
 #| label: fig-education-2018
 #| fig-cap: Distribution of Respondents by Education (2018)
 #| echo: false
 #| warning: false
-max_count <- max(table(labeled_df_reduced_2018$education)) + 1000
-labeled_df_reduced_2018 |> 
+
+education_df_reduced_categories <- labeled_df_reduced_2018 |> 
+  select_all() |>
+  mutate(
+    education=case_when(
+      education=='Bachelor\'s'~'Bachelor\'s, Master\'s or PhD',
+      education=='Master\'s'~'Bachelor\'s, Master\'s or PhD',
+      education=='Doctoral'~'Bachelor\'s, Master\'s or PhD',
+      TRUE~education
+    )
+  )
+max_count <- max(table(education_df_reduced_categories$education)) + 1000
+education_df_reduced_categories |> 
   ggplot(aes(x = education)) +
   geom_histogram(stat = "count", binwidth = 5, fill = "#013065", color = "white") +
   scale_y_continuous(limits = c(0, max_count)) +
@@ -442,15 +236,15 @@ labeled_df_reduced_2018 |>
     vjust = -0.3,  # Adjust vertical position of labels
     size = 3       # Adjust size of labels
   ) +
-  labs(title = "Education", 
+  labs(title = "", 
        x = "Education", 
        y = "Frequency") +
   theme_light()+
   theme(
-    plot.title = element_text(size = 15, face = "bold"),  # Title font size
-    axis.title.x = element_text(size = 10),               # X-axis label size
-    axis.title.y = element_text(size = 10),               # Y-axis label size
-    axis.text = element_text(size = 10),              # Axis text size (ticks)
+    plot.title = element_text(size = 15, face = "bold"),  
+    axis.title.x = element_text(size = 10),               
+    axis.title.y = element_text(size = 10),               
+    axis.text = element_text(size = 10),             
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
 ```
@@ -461,8 +255,19 @@ labeled_df_reduced_2018 |>
 #| echo: false
 #| warning: false
 
-max_count <- max(table(labeled_df_reduced_2021$education)) + 1000
-labeled_df_reduced_2021 |> 
+education_df_reduced_categories <- labeled_df_reduced_2021 |> 
+  select_all() |>
+  mutate(
+    education=case_when(
+      education=='Bachelor\'s'~'Bachelor\'s, Master\'s or PhD',
+      education=='Master\'s'~'Bachelor\'s, Master\'s or PhD',
+      education=='Doctoral'~'Bachelor\'s, Master\'s or PhD',
+      TRUE~education
+    )
+  )
+
+max_count <- max(table(education_df_reduced_categories$education)) + 1000
+education_df_reduced_categories |> 
   ggplot(aes(x = education)) +
   geom_histogram(stat = "count", binwidth = 5, fill = "#013065", color = "white") +
   scale_y_continuous(limits = c(0, max_count)) +
@@ -470,18 +275,18 @@ labeled_df_reduced_2021 |>
     stat = "count", 
     color = "black",
     aes(label = after_stat(count)), 
-    vjust = -0.3,  # Adjust vertical position of labels
-    size = 3       # Adjust size of labels
+    vjust = -0.3,  
+    size = 3       
   ) +
-  labs(title = "Education", 
+  labs(title = "", 
        x = "Education", 
        y = "Frequency") +
   theme_light()+
   theme(
-    plot.title = element_text(size = 15, face = "bold"),  # Title font size
-    axis.title.x = element_text(size = 10),               # X-axis label size
-    axis.title.y = element_text(size = 10),               # Y-axis label size
-    axis.text = element_text(size = 10),              # Axis text size (ticks)
+    plot.title = element_text(size = 15, face = "bold"),
+    axis.title.x = element_text(size = 10),        
+    axis.title.y = element_text(size = 10),       
+    axis.text = element_text(size = 10),
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
 ```
@@ -493,24 +298,25 @@ labeled_df_reduced_2021 |>
 
 ```{r}
 #| label: fig-age
-#| fig-cap: Distribution of Respondents by Education (2021)
+#| fig-cap: Distribution of Respondents by Age (2018, 2021)
 #| echo: false
 #| warning: false
 
-max_count <- max(table(labeled_df_reduced_2021$age)) + 1000
-labeled_df_reduced_2021 |> 
+all_age <-bind_rows(labeled_df_reduced_2021,labeled_df_reduced_2018)
+max_count <- max(table(all_age$age)) + 1000
+all_age |> 
   ggplot(aes(x = age)) +
   geom_histogram(fill = "#013065", color = "white") +
   scale_y_continuous(limits = c(0, max_count)) +
-  labs(title = "Age", 
+  labs(title = "", 
        x = "Age", 
        y = "Frequency") +
   theme_light()+
   theme(
-    plot.title = element_text(size = 15, face = "bold"),  # Title font size
-    axis.title.x = element_text(size = 10),               # X-axis label size
-    axis.title.y = element_text(size = 10),               # Y-axis label size
-    axis.text = element_text(size = 10),              # Axis text size (ticks)
+    plot.title = element_text(size = 15, face = "bold"),
+    axis.title.x = element_text(size = 10),
+    axis.title.y = element_text(size = 10),
+    axis.text = element_text(size = 10),
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
 ```
@@ -518,7 +324,7 @@ labeled_df_reduced_2021 |>
 
 # Model {#sec-model-desc}
 
-We leverage the logistic regression model to identify the association between suffering from psychological distress with sex and education. We set our model following the @tellingstories guidelines with the rstanarm package [@rstanarm_goodrich, @rstanarm_brilleman] in R [@citer].
+We use the logistic regression model to identify the association between suffering from psychological distress with sex and education. We set our model following the @tellingstories guidelines with the rstanarm package [@rstanarm_goodrich;@rstanarm_brilleman] in R [@citeR].
 
 Logistic regression is a commonly used regression model when the outcome variable is binary [@tellingstories]. For our dataset, we introduce an outcome variable, which represents whether an individual is suffering from psychological distress. As a predictor variable for the logistic regression, we will use the sex and education variables discussed in the @sec-data.
 
@@ -585,11 +391,11 @@ modelsummary(
 
 ## Educational Differences 
 
-We have not found any notable differences between education and psychological distress. Research indicates a strong connection between emotional well-being and education, as emotional learning is believed to be nurtured within the school environment and through the curriculum [@norwich_critical_2022;@billington_conditions_2022].
+We have found that psychological distress and education have a relation in terms of people who have higher education tend to feel lower psychological distress. Research indicates a strong connection between emotional well-being and education, as emotional learning is believed to be nurtured within the school environment and through the curriculum [@norwich_critical_2022;@billington_conditions_2022].
 
 ## Weaknesses and next steps
 
-We randomly selected 5000 samples for our model. We have not used any prediction to find out how good our model is for detecting psychological depression. We also have not conducted any data augmentation to improve our model result. Our next steps are carefully curating the dataset, introducing several data validation techniques, and increasing the sample set.
+We randomly selected 5000 samples for our model. We have not used any prediction to find out how good our model is for detecting psychological depression. Our next steps are carefully curating the dataset, introducing several data validation techniques, and increasing the sample set.
 
 # Conclusion
 
