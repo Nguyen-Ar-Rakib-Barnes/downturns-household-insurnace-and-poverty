@@ -7,7 +7,7 @@ author:
 thanks: "Code and data are available at: [https://github.com/Nguyen-Ar-Rakib-Barnes/downturns-household-insurance-and-poverty](https://github.com/Nguyen-Ar-Rakib-Barnes/downturns-household-insurance-and-poverty)."
 date: today
 date-format: long
-abstract: "Mental health poses a significant global health threat. This threat existed before the pandemic, and recent studies have shown that it has become even more prevalent after the pandemic. Our study developed a method to identify severe psychological depression using survey data that can be used as an early alert system to identify nonspecific psychological distress."
+abstract: "Mental health posed a significant global health threat before the pandemic, and recent studies have shown that it has become even more prevalent. Our study developed a method to identify severe psychological depression using survey data that can be used as an early alert system to identify nonspecific psychological distress."
 format: pdf
 number-sections: true
 bibliography: references.bib
